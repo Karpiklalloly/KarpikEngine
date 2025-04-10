@@ -1,0 +1,10 @@
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\bin\Debug\netstandard2.0\CoreGen.deps.json
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\bin\Debug\netstandard2.0\CoreGen.dll
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\bin\Debug\netstandard2.0\CoreGen.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\obj\Debug\netstandard2.0\CoreGen.csproj.AssemblyReference.cache
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\obj\Debug\netstandard2.0\CoreGen.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\obj\Debug\netstandard2.0\CoreGen.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\obj\Debug\netstandard2.0\CoreGen.AssemblyInfo.cs
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\obj\Debug\netstandard2.0\CoreGen.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\obj\Debug\netstandard2.0\CoreGen.dll
+C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\obj\Debug\netstandard2.0\CoreGen.pdb

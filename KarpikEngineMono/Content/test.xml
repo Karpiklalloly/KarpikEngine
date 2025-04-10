@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Transform xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Position>
+    <X>50</X>
+    <Y>50</Y>
+  </Position>
+  <Scale>
+    <X>1</X>
+    <Y>1</Y>
+  </Scale>
+  <Rotation>0</Rotation>
+</Transform>

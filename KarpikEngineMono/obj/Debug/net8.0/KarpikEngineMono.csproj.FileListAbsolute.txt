@@ -1,0 +1,16 @@
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\Content\player.xnb
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\KarpikEngineMono.deps.json
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\KarpikEngineMono.dll
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\KarpikEngineMono.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\Monogame.ImGuiNet.dll
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\Monogame.ImGuiNet.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\KarpikEngineMono.csproj.AssemblyReference.cache
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\KarpikEngineMono.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\KarpikEngineMono.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\KarpikEngineMono.AssemblyInfo.cs
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\KarpikEngineMono.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\KarpikEn.2483D9E4.Up2Date
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\KarpikEngineMono.dll
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\refint\KarpikEngineMono.dll
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\KarpikEngineMono.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\ref\KarpikEngineMono.dll
