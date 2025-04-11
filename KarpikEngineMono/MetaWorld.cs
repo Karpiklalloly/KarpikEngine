@@ -1,6 +1,6 @@
 ﻿using DCFApixels.DragonECS;
 
-namespace KarpikEngine;
+namespace KarpikEngineMono;
 
 public class MetaWorld : EcsWorld, IInjectionUnit
 {

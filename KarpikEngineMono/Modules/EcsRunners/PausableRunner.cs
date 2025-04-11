@@ -1,9 +1,9 @@
 ﻿using System;
 using DCFApixels.DragonECS;
 using DCFApixels.DragonECS.RunnersCore;
-using KarpikEngine.Modules.EcsCore;
+using KarpikEngineMono.Modules.EcsCore;
 
-namespace KarpikEngine.Modules.EcsRunners;
+namespace KarpikEngineMono.Modules.EcsRunners;
 
 public interface IPausableProcess : IEcsProcess
 {

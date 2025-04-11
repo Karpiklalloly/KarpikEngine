@@ -1,23 +1,22 @@
-[
-  {
-    "Type": "SpriteRenderer",
-    "Data": {
+{
+  "_components": [
+    {
+      "Type": "SpriteRenderer",
       "Color": {
-        "B": 0,
-        "G": 0,
-        "R": 0,
-        "A": 0
+        "B": 255,
+        "G": 255,
+        "R": 255,
+        "A": 255
       },
       "Effect": 0,
-      "Layer": 0.0
-    }
-  },
-  {
-    "Type": "Transform",
-    "Data": {
-      "Position": "0, 0",
+      "Layer": 0.0,
+      "TexturePath": "Player"
+    },
+    {
+      "Type": "Transform",
+      "Position": "100, 100",
       "Rotation": 0.0,
-      "Scale": "0, 0"
+      "Scale": "1, 1"
     }
-  }
-]
+  ]
+}

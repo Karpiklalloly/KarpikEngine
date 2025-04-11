@@ -1,11 +1,9 @@
-﻿using System;
-using DCFApixels.DragonECS;
-using KarpikEngine.Modules.SaveLoad;
+﻿using Karpik.DragonECS;
+using KarpikEngineMono.Modules.SaveLoad;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Newtonsoft.Json;
 
-namespace KarpikEngine.Modules.EcsCore;
+namespace KarpikEngineMono.Modules.EcsCore;
 
 public struct TimeComponent : IEcsComponent
 {
@@ -30,4 +28,38 @@ public struct SpriteRenderer : IEcsComponent
     public Color Color;
     public SpriteEffects Effect;
     public float Layer;
+    public string TexturePath
+    {
+        readonly get => _path;
+        set
+        {
+            if (value == _path) return;
+            _path = value;
+            Texture = Loader.LoadTexture(value);
+        }
+    }
+
+    private string _path;
+}
+
+public struct MoveTo : IEcsComponentRequest
+{
+    public Vector2 Position;
+
+    public entlong Source { get; set; }
+    public entlong Target { get; set; }
+}
+
+public struct MoveDirection : IEcsComponentEvent
+{
+    public Vector2 Direction;
+
+    public entlong Source { get; set; }
+    public entlong Target { get; set; }
+}
+
+[Serializable]
+public struct Speed : IEcsComponent
+{
+    public double Value;
 }

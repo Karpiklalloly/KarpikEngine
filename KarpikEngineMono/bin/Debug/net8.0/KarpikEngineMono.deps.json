@@ -177,7 +177,7 @@
         },
         "runtime": {
           "Monogame.ImGuiNet.dll": {
-            "assemblyVersion": "1.1.0",
+            "assemblyVersion": "1.1.0.0",
             "fileVersion": "1.1.0.0"
           }
         }

@@ -1,8 +1,8 @@
 ﻿using System;
 using DCFApixels.DragonECS;
 using DCFApixels.DragonECS.RunnersCore;
-using KarpikEngine;
-using KarpikEngine.Modules.EcsRunners;
+using KarpikEngineMono;
+using KarpikEngineMono.Modules.EcsRunners;
 
 namespace Karpik.DragonECS
 {
@@ -169,48 +169,42 @@ namespace Karpik.DragonECS
 
             public EventCallerSystem(EcsPipeline.Builder b)
             {
-                b.AddRunner<OnEventRunner<T>>();
+                b.AddRunner<OnRequestRunner<T>>();
             }
 
             public void Run()
             {
-                Pipeline.GetRunner<OnEventRunner<T>>().Run();
+                Pipeline.GetRunner<OnRequestRunner<T>>().Run();
             }
         }
         
         private class EventFixedCallerSystem<T> : IEcsFixedRunProcess, IEcsPipelineMember where T : struct, IEcsComponentRequest
         {
-            private EcsEventWorld _eventWorld;
             public EcsPipeline Pipeline { get; set; }
-
-            public EventFixedCallerSystem()
-            {
-                _eventWorld = Worlds.Instance.EventWorld;
-            }
 
             public EventFixedCallerSystem(EcsPipeline.Builder b)
             {
-                b.AddRunner<OnEventFixedRunner<T>>();
+                b.AddRunner<OnRequestFixedRunner<T>>();
             }
 
             public void FixedRun()
             {
-                Pipeline.GetRunner<OnEventFixedRunner<T>>().Run();
+                Pipeline.GetRunner<OnRequestFixedRunner<T>>().Run();
             }
         }
         
-        public class OnEventRunner<T> : EcsRunner<IEcsRunOnRequest<T>>, IEcsRunOnRequest<T> where T : struct, IEcsComponentRequest
+        public class OnRequestRunner<T> : EcsRunner<IEcsRunOnRequest<T>>, IEcsRunOnRequest<T> where T : struct, IEcsComponentRequest
         {
             private class Aspect : EcsAspect
             {
                 public EcsPool<T> evt = Inc;
             }
 
-            private EcsEventWorld _eventWorld;
+            private EcsDefaultWorld _eventWorld;
 
-            public OnEventRunner()
+            public OnRequestRunner()
             {
-                _eventWorld = Worlds.Instance.EventWorld;
+                _eventWorld = Worlds.Instance.World;
             }
 
             public void Run()
@@ -237,18 +231,18 @@ namespace Karpik.DragonECS
             }
         }
         
-        public class OnEventFixedRunner<T> : EcsRunner<IEcsFixedRunOnRequest<T>>, IEcsFixedRunOnRequest<T> where T : struct, IEcsComponentRequest
+        public class OnRequestFixedRunner<T> : EcsRunner<IEcsFixedRunOnRequest<T>>, IEcsFixedRunOnRequest<T> where T : struct, IEcsComponentRequest
         {
             private class Aspect : EcsAspect
             {
                 public EcsPool<T> evt = Inc;
             }
 
-            private EcsEventWorld _eventWorld;
+            private EcsDefaultWorld _eventWorld;
 
-            public OnEventFixedRunner()
+            public OnRequestFixedRunner()
             {
-                _eventWorld = Worlds.Instance.EventWorld;
+                _eventWorld = Worlds.Instance.World;
             }
 
             public void Run()
@@ -280,7 +274,7 @@ namespace Karpik.DragonECS
         where TEvent : struct, IEcsComponentEvent
         where TAspect : EcsAspect, new()
     {
-        private EcsEventWorld _world = Worlds.Instance.EventWorld;
+        private EcsDefaultWorld _world = Worlds.Instance.World;
         
         public void RunOnEvent(ref TEvent evt)
         {
@@ -307,7 +301,7 @@ namespace Karpik.DragonECS
         where TRequest : struct, IEcsComponentRequest
         where TAspect : EcsAspect, new()
     {
-        private EcsEventWorld _world = Worlds.Instance.EventWorld;
+        private EcsWorld _world = Worlds.Instance.World;
         
         public void RunOnEvent(ref TRequest evt)
         {
@@ -334,7 +328,7 @@ namespace Karpik.DragonECS
         where TEvent : struct, IEcsComponentEvent
         where TAspect : EcsAspect, new()
     {
-        private EcsDefaultWorld _world = Worlds.Instance.World;
+        private EcsEventWorld _world = Worlds.Instance.EventWorld;
         
         public void RunOnEvent(ref TEvent evt)
         {

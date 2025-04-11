@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace KarpikEngine.Modules.Utilities
+namespace KarpikEngineMono.Modules.Utilities
 {
     //DragonECS-based
     public class Pool<T>

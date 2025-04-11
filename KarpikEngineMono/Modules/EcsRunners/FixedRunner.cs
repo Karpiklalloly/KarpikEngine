@@ -1,7 +1,7 @@
 ﻿using DCFApixels.DragonECS;
 using DCFApixels.DragonECS.RunnersCore;
 
-namespace KarpikEngine.Modules.EcsRunners;
+namespace KarpikEngineMono.Modules.EcsRunners;
 
 public interface IEcsFixedRunProcess : IEcsProcess
 {

@@ -1,14 +1,14 @@
 ﻿using System.Runtime.Serialization;
-using KarpikEngine.Modules.EcsCore;
+using KarpikEngineMono.Modules.EcsCore;
 
-namespace KarpikEngine.Modules.SaveLoad;
+namespace KarpikEngineMono.Modules.SaveLoad;
 
 [Serializable]
 public class ComponentsTemplate
 {
     [JsonIgnore]
     public ComponentTemplateBase[] Components;
-    [JsonProperty]
+    [JsonProperty("Components")]
     private IEcsComponentMember[] _components;
 
     public ComponentsTemplate()
@@ -35,20 +35,20 @@ public class ComponentsTemplate
     }
     
     [OnSerializing]
-    private void OnSerialize()
+    private void OnSerialize(StreamingContext context)
     {
         _components = Components.Select(x => (IEcsComponentMember)x.GetRaw()).ToArray();
     }
     
     [OnDeserialized]
-    private void OnDeserialize()
+    private void OnDeserialize(StreamingContext context)
     {
         Components = Convert(_components);
     }
 
     private ComponentTemplateBase[] Convert(params IEcsComponentMember[] components)
     {
-        var c = components.Select(ConvertFrom).ToArray();
+        var c = components.Select(ConvertFrom).Where(x => x is not null).ToArray();
         return c;
     }
 

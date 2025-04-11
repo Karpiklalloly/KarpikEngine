@@ -1,4 +1,4 @@
-﻿namespace KarpikEngine.Modules;
+﻿namespace KarpikEngineMono.Modules;
 
 public static class Spawner
 {

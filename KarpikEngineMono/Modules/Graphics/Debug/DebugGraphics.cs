@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using ImGuiNET;
 
-namespace KarpikEngine.Modules.Graphics;
+namespace KarpikEngineMono.Modules.Graphics;
 
 public static class DebugGraphics
 {

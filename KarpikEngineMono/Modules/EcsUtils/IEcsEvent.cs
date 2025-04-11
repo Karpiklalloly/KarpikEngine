@@ -1,6 +1,6 @@
 ﻿using DCFApixels.DragonECS;
 
-namespace KarpikEngine.Modules.EcsUtils;
+namespace KarpikEngineMono.Modules.EcsUtils;
 
 public interface IEcsEvent
 {

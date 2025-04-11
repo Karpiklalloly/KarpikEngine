@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace KarpikEngine.Modules.SaveLoad;
+namespace KarpikEngineMono.Modules.SaveLoad;
 
 public interface IComponentTemplate
 {

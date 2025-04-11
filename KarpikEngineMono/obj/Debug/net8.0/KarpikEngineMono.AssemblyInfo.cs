@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KarpikEngineMono")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67a95ba30a79e0301849050aeae07740eb374d85")]
 [assembly: System.Reflection.AssemblyProductAttribute("KarpikEngineMono")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KarpikEngineMono")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

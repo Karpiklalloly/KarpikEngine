@@ -1,8 +1,8 @@
-﻿using KarpikEngine.Modules.EcsCore;
+﻿using KarpikEngineMono.Modules.EcsCore;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace KarpikEngine.Modules.SaveLoad;
+namespace KarpikEngineMono.Modules.SaveLoad;
 
 public static class Loader
 {
@@ -14,8 +14,8 @@ public static class Loader
         path = ApproveFileName(path, "json");
         path = Path.Combine(RootDirectory, path);
         var json = File.ReadAllText(path);
-        return (ComponentsTemplate)JsonConvert.DeserializeObject(json);
-        
+        var options = new JsonSerializerSettings { Converters = { new ComponentArrayConverter() } };
+        return JsonConvert.DeserializeObject<ComponentsTemplate>(json, options);
     }
 
     public static void Serialize<T>(T obj, string path)

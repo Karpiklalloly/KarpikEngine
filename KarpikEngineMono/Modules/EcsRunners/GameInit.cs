@@ -1,6 +1,6 @@
 ﻿using DCFApixels.DragonECS;
 using DCFApixels.DragonECS.RunnersCore;
-using KarpikEngine;
+using KarpikEngineMono;
 
 namespace Karpik.Vampire.Scripts.DragonECS.CustomRunners
 {

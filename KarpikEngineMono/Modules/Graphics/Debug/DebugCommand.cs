@@ -1,6 +1,6 @@
 ﻿using ImGuiNET;
 
-namespace KarpikEngine.Modules.Graphics;
+namespace KarpikEngineMono.Modules.Graphics;
 
 internal interface IDebugCommand
 {

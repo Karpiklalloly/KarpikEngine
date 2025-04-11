@@ -1,38 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
-using KarpikEngine.Modules.EcsCore;
+using KarpikEngineMono.Modules.EcsCore;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace KarpikEngine.Modules.Graphics;
+namespace KarpikEngineMono.Modules.Graphics;
 
 public static class Drawer
 {
     internal static SpriteBatch SpriteBatch;
 
-    private static Queue<Action> _draws = new Queue<Action>();
+    private static DrawAction[] _actions = new DrawAction[128];
+    private static int _actionsCount = 0;
     
     public static void Sprite(SpriteRenderer spriteRenderer, Transform transform)
     {
-        _draws.Enqueue(() => SpriteBatch.Draw(
-            spriteRenderer.Texture,
-            transform.Position,
-            null,
-            spriteRenderer.Color,
-            transform.Rotation,
-            Vector2.Zero,
-            transform.Scale.X,
-            spriteRenderer.Effect,
-            spriteRenderer.Layer));
+        ResizeIfNeed();
+        _actions[_actionsCount++] = new DrawAction()
+        {
+            Texture = spriteRenderer.Texture,
+            Position = transform.Position,
+            Color = spriteRenderer.Color,
+            Rotation = transform.Rotation,
+            Scale = transform.Scale,
+            Effect = spriteRenderer.Effect,
+            Layer = spriteRenderer.Layer
+        };
     }
 
     internal static void Draw()
     {
         SpriteBatch.Begin();
-        while (_draws.Count > 0)
+        while (_actionsCount > 0)
         {
-            _draws.Dequeue().Invoke();
+            _actions[--_actionsCount].Draw();
         }
         SpriteBatch.End();
+    }
+
+    private static void ResizeIfNeed()
+    {
+        if (_actionsCount >= _actions.Length)
+        {
+            Array.Resize(ref _actions, _actions.Length * 2);
+        }
+    }
+
+    private struct DrawAction
+    {
+        public Texture2D Texture;
+        public Vector2 Position;
+        public Color Color;
+        public float Rotation;
+        public Vector2 Scale;
+        public SpriteEffects Effect;
+        public float Layer;
+        
+        public void Draw() => SpriteBatch.Draw(Texture, Position, null, Color, Rotation, Vector2.Zero, Scale, Effect, Layer);
     }
 }

@@ -1,4 +1,4 @@
-#if DISABLE_DEBUG
+п»ї#if DISABLE_DEBUG
 #undef DEBUG
 #endif
 using DCFApixels.DragonECS.Core;
@@ -126,7 +126,7 @@ namespace DCFApixels.DragonECS
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T Get(int entityID)
         {
-#if DEBUG // не нужен STAB_MODE
+#if DEBUG // РЅРµ РЅСѓР¶РµРЅ STAB_MODE
             if (!Has(entityID)) { EcsPoolThrowHelper.ThrowNotHaveComponent<T>(entityID); }
 #endif
 #if !DRAGONECS_DISABLE_POOLS_EVENTS
@@ -137,7 +137,7 @@ namespace DCFApixels.DragonECS
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref readonly T Read(int entityID)
         {
-#if DEBUG // не нужен STAB_MODE
+#if DEBUG // РЅРµ РЅСѓР¶РµРЅ STAB_MODE
             if (!Has(entityID)) { EcsPoolThrowHelper.ThrowNotHaveComponent<T>(entityID); }
 #endif
             return ref _items[_mapping[entityID]];
@@ -237,7 +237,7 @@ namespace DCFApixels.DragonECS
 #elif DRAGONECS_STABILITY_MODE
             if (_isLocked) { return; }
 #endif
-            _recycledItemsCount = 0; // спереди потому чтобы обнулялось, так как Del не обнуляет
+            _recycledItemsCount = 0; // СЃРїРµСЂРµРґРё РїРѕС‚РѕРјСѓ С‡С‚РѕР±С‹ РѕР±РЅСѓР»СЏР»РѕСЃСЊ, С‚Р°Рє РєР°Рє Del РЅРµ РѕР±РЅСѓР»СЏРµС‚
             if (_itemsCount <= 0) { return; }
             _itemsCount = 0;
             var span = _source.Where(out SingleAspect<T> _);

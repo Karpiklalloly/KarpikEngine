@@ -1,13 +1,14 @@
 ﻿using Karpik.Vampire.Scripts.DragonECS.CustomRunners;
-using KarpikEngine.Modules.Graphics;
+using KarpikEngineMono.Modules.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.ImGuiNet;
-using KarpikEngine;
-using KarpikEngine.Modules.EcsCore;
-using KarpikEngine.Modules.EcsRunners;
-using KarpikEngine.Modules.SaveLoad;
+using KarpikEngineMono;
+using KarpikEngineMono.Modules;
+using KarpikEngineMono.Modules.EcsCore;
+using KarpikEngineMono.Modules.EcsRunners;
+using KarpikEngineMono.Modules.SaveLoad;
 
 namespace KarpikEngineMonoGame;
 
@@ -68,28 +69,11 @@ public class Main : Game
 
     protected override void Update(GameTime gameTime)
     {
+        Time.Update(gameTime.ElapsedGameTime.TotalSeconds);
+        
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-        
-        if (Keyboard.GetState().IsKeyDown(Keys.F1))
-        {
-            var world = Worlds.Instance.World;
-            var e = world.NewEntity();
-            world.GetPool<SpriteRenderer>().Add(e) = new SpriteRenderer()
-            {
-                Texture = Content.Load<Texture2D>("player"),
-                Color = Color.White,
-                Effect = SpriteEffects.None,
-                Layer = 0
-            };
-            world.GetPool<Transform>().Add(e) = new Transform()
-            {
-                Position = new Vector2(0, 0),
-                Rotation = 0,
-                Scale = Vector2.One
-            };
-        }
 
         _timer += gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -130,5 +114,8 @@ public class Main : Game
         _builder.AddRunner<EcsFixedRunRunner>();
         _builder.AddRunner<GamePreInit>();
         _builder.AddRunner<GameInit>();
+        _builder.AddModule(new MovementModule());
+        _builder.AddModule(new VisualModule());
+        _builder.AddModule(new InputModule());
     }
 }

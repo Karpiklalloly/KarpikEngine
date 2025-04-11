@@ -1,4 +1,4 @@
-﻿namespace KarpikEngine.Modules.Time;
+﻿namespace KarpikEngineMono.Modules;
 
 public static class Time
 {
