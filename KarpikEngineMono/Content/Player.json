@@ -1,0 +1,29 @@
+{
+  "Components": [
+    {
+      "Type": "SpriteRenderer",
+      "Color": {
+        "B": 255,
+        "G": 255,
+        "R": 255,
+        "A": 255
+      },
+      "Effect": 0,
+      "Layer": 0.0,
+      "TexturePath": "Player"
+    },
+    {
+      "Type": "Transform",
+      "Position": "100, 100",
+      "Rotation": 0.0,
+      "Scale": "1, 1"
+    },
+    {
+      "Type": "HandleInputMovement"
+    },
+    {
+      "Type": "Speed",
+      "Value": 150
+    }
+  ]
+}
