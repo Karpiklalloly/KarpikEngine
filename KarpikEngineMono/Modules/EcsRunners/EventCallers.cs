@@ -43,7 +43,7 @@ namespace Karpik.DragonECS
             }
         }
         
-        private class EventFixedCallerSystem<T> : IEcsFixedRunProcess, IEcsPipelineMember where T : struct, IEcsComponentEvent
+        private class EventFixedCallerSystem<T> : IEcsFixedRun, IEcsPipelineMember where T : struct, IEcsComponentEvent
         {
             private EcsEventWorld _eventWorld;
             public EcsPipeline Pipeline { get; set; }
@@ -178,7 +178,7 @@ namespace Karpik.DragonECS
             }
         }
         
-        private class EventFixedCallerSystem<T> : IEcsFixedRunProcess, IEcsPipelineMember where T : struct, IEcsComponentRequest
+        private class EventFixedCallerSystem<T> : IEcsFixedRun, IEcsPipelineMember where T : struct, IEcsComponentRequest
         {
             public EcsPipeline Pipeline { get; set; }
 

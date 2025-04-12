@@ -13,32 +13,80 @@ namespace Game
         {
             public EcsPool<Transform> Transform = Inc;
             public EcsTagPool<HandleInputMovement> handleInputMovements = Inc;
+            public EcsPool<Speed> speed = Inc;
         }
 
         private EcsDefaultWorld _world = Worlds.Instance.World;
 
         public void Run()
         {
-            foreach (var en in _world.Where(out Aspect _))
+            var entities = _world.Where(out Aspect a);
+            if (entities.Count > 0)
             {
+                var en = entities[0];
                 var e = _world.GetEntityLong(en);
-                if (Input.IsDown(Keys.W) || Input.IsDown(Keys.Up))
+                var speed = a.speed.Get(en).Value;
+                if (Input.IsDown(Keys.W))
                 {
-                    e.AddMove(new Vector2(0, -1));
+                    e.AddMove(new Vector2(0, -1) * (float)speed);
                 }
-                if (Input.IsDown(Keys.S) || Input.IsDown(Keys.Down))
+                if (Input.IsDown(Keys.S))
                 {
-                    e.AddMove(new Vector2(0, 1));
+                    e.AddMove(new Vector2(0, 1) * (float)speed);
                 }
-                if (Input.IsDown(Keys.A) || Input.IsDown(Keys.Left))
+                if (Input.IsDown(Keys.A))
                 {
-                    e.AddMove(new Vector2(-1, 0));
+                    e.AddMove(new Vector2(-1, 0) * (float)speed);
                 }
-                if (Input.IsDown(Keys.D) || Input.IsDown(Keys.Right))
+                if (Input.IsDown(Keys.D))
                 {
-                    e.AddMove(new Vector2(1, 0));
+                    e.AddMove(new Vector2(1, 0) * (float)speed);
                 }
             }
+            
+            if (entities.Count > 1)
+            {
+                var en = entities[1];
+                var e = _world.GetEntityLong(en);
+                var speed = a.speed.Get(en).Value;
+                if (Input.IsDown(Keys.Up))
+                {
+                    e.AddMove(new Vector2(0, -1) * (float)speed);
+                }
+                if (Input.IsDown(Keys.Down))
+                {
+                    e.AddMove(new Vector2(0, 1) * (float)speed);
+                }
+                if (Input.IsDown(Keys.Left))
+                {
+                    e.AddMove(new Vector2(-1, 0) * (float)speed);
+                }
+                if (Input.IsDown(Keys.Right))
+                {
+                    e.AddMove(new Vector2(1, 0) * (float)speed);
+                }
+            }
+            // foreach (var en in entities)
+            // {
+            //     var e = _world.GetEntityLong(en);
+            //     var speed = a.speed.Get(en).Value;
+            //     if (Input.IsDown(Keys.W) || Input.IsDown(Keys.Up))
+            //     {
+            //         e.AddMove(new Vector2(0, -1) * (float)speed);
+            //     }
+            //     if (Input.IsDown(Keys.S) || Input.IsDown(Keys.Down))
+            //     {
+            //         e.AddMove(new Vector2(0, 1) * (float)speed);
+            //     }
+            //     if (Input.IsDown(Keys.A) || Input.IsDown(Keys.Left))
+            //     {
+            //         e.AddMove(new Vector2(-1, 0) * (float)speed);
+            //     }
+            //     if (Input.IsDown(Keys.D) || Input.IsDown(Keys.Right))
+            //     {
+            //         e.AddMove(new Vector2(1, 0) * (float)speed);
+            //     }
+            // }
         }
     }
 }

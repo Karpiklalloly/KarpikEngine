@@ -1,5 +1,4 @@
-﻿using KarpikEngineMono.Modules.EcsCore;
-using KarpikEngineMonoGame;
+﻿using KarpikEngineMonoGame;
 
 namespace Game;
 

@@ -1,6 +1,6 @@
-﻿using KarpikEngineMono.Modules.EcsCore;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json.Converters;
 
 namespace KarpikEngineMono.Modules.SaveLoad;
 
@@ -22,8 +22,9 @@ public static class Loader
     {
         var settings = new JsonSerializerSettings
         {
-            Converters = { new ComponentArrayConverter() }, // Один конвертер для всего массива
-            Formatting = Formatting.Indented
+            Converters = { new ComponentArrayConverter(), new StringEnumConverter() }, // Один конвертер для всего массива
+            Formatting = Formatting.Indented,
+            
         };
         path = ApproveFileName(path, "json");
         path = Path.Combine(RootDirectory, path);

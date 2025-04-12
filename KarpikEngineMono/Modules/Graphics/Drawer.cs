@@ -51,11 +51,11 @@ public static class Drawer
         public Texture2D Texture;
         public Vector2 Position;
         public Color Color;
-        public float Rotation;
+        public double Rotation;
         public Vector2 Scale;
         public SpriteEffects Effect;
         public float Layer;
         
-        public void Draw() => SpriteBatch.Draw(Texture, Position, null, Color, Rotation, Vector2.Zero, Scale, Effect, Layer);
+        public void Draw() => SpriteBatch.Draw(Texture, Position, null, Color, (float)Rotation, Vector2.Zero, Scale, Effect, Layer);
     }
 }

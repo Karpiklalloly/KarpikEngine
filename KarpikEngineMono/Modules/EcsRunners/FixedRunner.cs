@@ -1,14 +1,13 @@
-﻿using DCFApixels.DragonECS;
-using DCFApixels.DragonECS.RunnersCore;
+﻿using DCFApixels.DragonECS.RunnersCore;
 
 namespace KarpikEngineMono.Modules.EcsRunners;
 
-public interface IEcsFixedRunProcess : IEcsProcess
+public interface IEcsFixedRun : IEcsProcess
 {
     public void FixedRun();
 }
 
-public class EcsFixedRunRunner : EcsRunner<IEcsFixedRunProcess>, IEcsFixedRunProcess
+public class EcsFixedRunRunner : EcsRunner<IEcsFixedRun>, IEcsFixedRun
 {
     private RunHelper _helper;
     protected override void OnSetup()

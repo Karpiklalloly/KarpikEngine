@@ -21,7 +21,7 @@ public class PausableRunner : EcsRunner<IPausableProcess>, IPausableProcess
     
     public void PausableRun()
     {
-        if (_world.Get<TimeComponent>().Paused) return;
+        if (Time.IsPaused) return;
         foreach (var process in Process)
         {
             process.PausableRun();
@@ -45,7 +45,7 @@ public sealed class PausableLateRunner : EcsRunner<IEcsPausableLateRun>, IEcsPau
         
     public void PausableLateRun()
     {
-        if (_world.Get<TimeComponent>().Paused) return;
+        if (Time.IsPaused) return;
             
         foreach (var process in Process)
         {

@@ -1,4 +1,5 @@
-﻿using Karpik.Vampire.Scripts.DragonECS.CustomRunners;
+﻿using System.Diagnostics;
+using Karpik.Vampire.Scripts.DragonECS.CustomRunners;
 using KarpikEngineMono.Modules.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,8 +21,8 @@ public class Main : Game
 
     private EcsPipeline.Builder _builder;
     private EcsPipeline _pipeline;
-    private double _timer = 0;
-    private double _fixedTime = 1.0 / 50;
+    private double _fixedTimer = 0;
+    private Stopwatch _stopWatch = new();
 
     public Main()
     {
@@ -57,6 +58,7 @@ public class Main : Game
     protected override void BeginRun()
     {
         _pipeline = _builder.BuildAndInit();
+        _stopWatch.Start();
         base.BeginRun();
     }
 
@@ -69,19 +71,20 @@ public class Main : Game
 
     protected override void Update(GameTime gameTime)
     {
-        Time.Update(gameTime.ElapsedGameTime.TotalSeconds);
+        Time.Update(_stopWatch.Elapsed.TotalSeconds);
+        _stopWatch.Restart();
         
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        _timer += gameTime.ElapsedGameTime.TotalSeconds;
-
+        _fixedTimer += Time.DeltaTime;
+        
         _pipeline.Run();
-        if (_timer >= _fixedTime)
+        if (_fixedTimer >= Time.FixedDeltaTime)
         {
             _pipeline.GetRunner<EcsFixedRunRunner>().FixedRun();
-            _timer -= _fixedTime;
+            _fixedTimer -= Time.FixedDeltaTime;
         }
         _pipeline.GetRunner<PausableRunner>().PausableRun();
         _pipeline.GetRunner<PausableLateRunner>().PausableLateRun();
@@ -103,19 +106,15 @@ public class Main : Game
 
     private void InitEcs()
     {
-        Worlds.Instance.MetaWorld.Get<TimeComponent>() = new TimeComponent()
-        {
-            Paused = false
-        };
-
-        
-        _builder.AddRunner<PausableRunner>();
-        _builder.AddRunner<PausableLateRunner>();
-        _builder.AddRunner<EcsFixedRunRunner>();
-        _builder.AddRunner<GamePreInit>();
-        _builder.AddRunner<GameInit>();
-        _builder.AddModule(new MovementModule());
-        _builder.AddModule(new VisualModule());
-        _builder.AddModule(new InputModule());
+        _builder
+            .AddRunner<PausableRunner>()
+            .AddRunner<PausableLateRunner>()
+            .AddRunner<EcsFixedRunRunner>()
+            .AddRunner<GamePreInit>()
+            .AddRunner<GameInit>()
+            .AddModule(new VisualModule())
+            .AddModule(new InputModule())
+            .AddModule(new PhysicsModule())
+            .AddModule(new PhysicsModule());
     }
 }

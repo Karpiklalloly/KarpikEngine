@@ -5,11 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KarpikEngineMono.Modules.EcsCore;
 
-public struct TimeComponent : IEcsComponent
-{
-    public bool Paused;
-}
-
 [Serializable]
 public struct Player : IEcsTagComponent {}
 
@@ -17,7 +12,7 @@ public struct Player : IEcsTagComponent {}
 public struct Transform : IEcsComponent
 {
     public Vector2 Position;
-    public float Rotation;
+    public double Rotation;
     public Vector2 Scale; 
 }
 
@@ -40,26 +35,4 @@ public struct SpriteRenderer : IEcsComponent
     }
 
     private string _path;
-}
-
-public struct MoveTo : IEcsComponentRequest
-{
-    public Vector2 Position;
-
-    public entlong Source { get; set; }
-    public entlong Target { get; set; }
-}
-
-public struct MoveDirection : IEcsComponentEvent
-{
-    public Vector2 Direction;
-
-    public entlong Source { get; set; }
-    public entlong Target { get; set; }
-}
-
-[Serializable]
-public struct Speed : IEcsComponent
-{
-    public double Value;
 }

@@ -6,7 +6,7 @@ namespace KarpikEngineMono.Modules.SaveLoad;
 
 public class ComponentArrayConverter : JsonConverter<IEcsComponentMember[]>
 {
-    private const string TypePropertyName = "Type";
+    private const string TypePropertyName = "$Type";
 
     private static MethodInfo _genericToObjectMethodInfo;
     private static readonly object _methodInfoLock = new();
@@ -19,7 +19,7 @@ public class ComponentArrayConverter : JsonConverter<IEcsComponentMember[]>
         {
             var obj = JObject.FromObject(component, serializer);
             var typeName = component.GetType().Name;
-            obj.AddFirst(new JProperty("Type", typeName));
+            obj.AddFirst(new JProperty(TypePropertyName, typeName));
             obj.WriteTo(writer);
         }
         writer.WriteEndArray();

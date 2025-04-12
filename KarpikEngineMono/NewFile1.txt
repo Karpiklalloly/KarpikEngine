@@ -1,0 +1,210 @@
+﻿Фиксированный Шаг (Прежде Чем Начнем):
+
+Напомню: все эти системы должны работать с фиксированным шагом времени (fixedDeltaTime), например, 1/60 секунды. Твой основной игровой цикл будет накапливать реальное прошедшее время и запускать этот набор систем столько раз, сколько нужно, чтобы "догнать" реальное время. Это гарантирует стабильность и воспроизводимость физики независимо от FPS.
+
+      
+// Пример в главном цикле
+float fixedDeltaTime = 1.0f / 60.0f; // Например, 60 FPS для физики
+float timeAccumulator = 0.0f;
+
+void Update(float realDeltaTime)
+{
+    timeAccumulator += realDeltaTime;
+    while (timeAccumulator >= fixedDeltaTime)
+    {
+        PhysicsStep(fixedDeltaTime); // Выполняем полный шаг физики
+        timeAccumulator -= fixedDeltaTime;
+    }
+    // Рендеринг происходит после всех шагов физики (с интерполяцией, если нужно)
+    Render();
+}
+
+void PhysicsStep(float dt)
+{
+    // Вызываем системы в ПРАВИЛЬНОМ порядке
+    inputSystem.Update(dt); // Пример, ввод может влиять на силы
+    aiSystem.Update(dt);    // Пример
+    forceApplicationSystem.Update(dt);
+    movementSystem.Update(dt);
+    collisionDetectionSystem.Update(dt);
+    collisionResolutionSystem.Update(dt);
+    cleanupSystem.Update(dt);
+}
+
+    
+
+IGNORE_WHEN_COPYING_START
+Use code with caution.C#
+IGNORE_WHEN_COPYING_END
+
+Детальное Описание Систем:
+
+1. Системы Применения Сил (InputSystem, AISystem, ForceApplicationSystem и др.)
+
+    Задача: Определить и применить силы, действующие на объекты в этом кадре.
+
+    Подсистемы:
+
+        InputSystem / PlayerControlSystem: Читает ввод игрока (клавиатура, геймпад) и преобразует его в силы (например, тяга двигателя, прыжок) или непосредственно изменяет скорость (для кинематических тел). Добавляет силу/момент в ForceComponent управляемого игроком Entity.
+
+        AISystem: Подобно InputSystem, но для AI. AI принимает решения и применяет силы к своим Entity (например, следование, атака). Добавляет силу/момент в ForceComponent.
+
+        ForceApplicationSystem: Применяет глобальные, постоянно действующие силы. Самый частый пример – гравитация.
+
+            Запрос (Query): Все Entity с RigidBodyComponent (где BodyType == Dynamic) и ForceComponent.
+
+            Логика: Для каждого такого Entity: forceComponent.Force += gravityVector * rigidBodyComponent.Mass; (Обрати внимание: умножаем на массу, так как ускорение свободного падения постоянно, а сила зависит от массы). Можно добавить и другие глобальные силы (ветер, сопротивление среды и т.д.).
+
+    Выход: Компоненты ForceComponent у соответствующих Entity обновлены (силы/моменты добавлены).
+
+2. MovementSystem (Интегратор)
+
+    Задача: Обновить скорости и позиции/вращения объектов на основе накопленных сил и текущих скоростей за fixedDeltaTime.
+
+    Запрос (Query): Все Entity с TransformComponent, VelocityComponent, ForceComponent, RigidBodyComponent.
+
+    Логика (для одного Entity за шаг dt):
+
+        Проверить rigidBodyComponent.BodyType. Если Static, ничего не делать.
+
+        Обновить Скорости (только для Dynamic):
+
+            acceleration = forceComponent.Force * rigidBodyComponent.InverseMass;
+
+            velocityComponent.LinearVelocity += acceleration * dt;
+
+            angularAcceleration = forceComponent.Torque * rigidBodyComponent.InverseMomentOfInertia;
+
+            velocityComponent.AngularVelocity += angularAcceleration * dt;
+
+            (Опционально) Применить затухание (damping), если нужно: LinearVelocity *= linearDampingFactor, AngularVelocity *= angularDampingFactor.
+
+        Обновить Позицию/Вращение (для Dynamic и Kinematic):
+
+            transformComponent.Position += velocityComponent.LinearVelocity * dt;
+
+            transformComponent.Rotation += velocityComponent.AngularVelocity * dt;
+
+        Очистить Силы: Сбросить накопленные силы для следующего кадра.
+
+            forceComponent.Force = Vector2.Zero;
+
+            forceComponent.Torque = 0.0f;
+
+    Выход: TransformComponent и VelocityComponent обновлены. ForceComponent очищен.
+
+    Варианты: Использовать Semi-Implicit Euler (как описано выше) или другой интегратор (Verlet).
+
+3. CollisionDetectionSystem
+
+    Задача: Найти все пары сталкивающихся коллайдеров.
+
+    Запрос (Query): Все Entity с TransformComponent и ColliderComponent.
+
+    Логика:
+
+        Обновление Коллайдеров: Перед проверками может потребоваться обновить глобальное положение/вращение/вершины коллайдеров на основе их Offset, RotationOffset и текущего TransformComponent. Рассчитать Axis-Aligned Bounding Box (AABB) для каждого коллайдера.
+
+        Broadphase (Широкая фаза):
+
+            Цель: Быстро отсеять пары, которые точно не пересекаются.
+
+            Метод: Использовать пространственную структуру данных (простая сетка, Quadtree) или проверку пересечения AABB всех коллайдеров.
+
+            Выход: Список потенциально сталкивающихся пар (EntityA, EntityB).
+
+        Narrowphase (Узкая фаза):
+
+            Цель: Проверить точное пересечение для каждой пары из broadphase.
+
+            Метод: Вызвать соответствующую функцию проверки для типов коллайдеров пары (CheckCircleCircle, CheckCircleBox, CheckPolygonPolygonUsingSAT, и т.д.).
+
+            Вход: Геометрия двух коллайдеров в мировых координатах.
+
+            Выход (при пересечении): Информация о столкновении:
+
+                bool Intersects
+
+                Vector2 Normal (нормаль от B к A)
+
+                float PenetrationDepth
+
+                Vector2 ContactPoint(s) (опционально, но полезно для точной физики)
+
+        Создание CollisionInfoComponent / Генерация Событий:
+
+            Для каждой пересекающейся пары (EntityA, EntityB):
+
+                Проверить флаги IsTrigger у обоих ColliderComponent.
+
+                Если оба IsTrigger == false: Создать (или обновить существующий) CollisionInfoComponent на Entity A (с данными OtherEntity = B, Normal, Depth, Contact) и на Entity B (с OtherEntity = A, -Normal, Depth, Contact). Важно: Не создавать CollisionInfo для пар Static-Static.
+
+                Если хотя бы один IsTrigger == true: Не создавать CollisionInfoComponent. Вместо этого сгенерировать событие "триггер" (OnTriggerEnter, OnTriggerStay, OnTriggerExit - для этого может потребоваться хранить состояние с прошлого кадра).
+
+    Выход: Entity, участвующие в физических столкновениях, получают CollisionInfoComponent. Генерируются события триггеров.
+
+4. CollisionResolutionSystem
+
+    Задача: Разрешить физические столкновения (не триггеры), устранив проникновение и изменив скорости.
+
+    Запрос (Query): Все Entity с CollisionInfoComponent. Также нужен доступ к TransformComponent, VelocityComponent, RigidBodyComponent как самого Entity, так и OtherEntity из CollisionInfoComponent.
+
+    Логика (для одного Entity A с CollisionInfoComponent о столкновении с Entity B):
+
+        Получить компоненты (Transform, Velocity, RigidBody) для A и B. Проверить BodyType.
+
+        Разрешение Проникновения (Positional Correction):
+
+            Цель: Мгновенно раздвинуть объекты, чтобы они не пересекались.
+
+            Метод: Сдвинуть A и B вдоль нормали (collisionInfo.Normal) на расстояние, пропорциональное collisionInfo.PenetrationDepth и их InverseMass.
+
+                totalInverseMass = rigidBodyA.InverseMass + rigidBodyB.InverseMass;
+
+                Если totalInverseMass почти ноль (оба static/kinematic), не делать ничего.
+
+                correctionAmount = collisionInfo.PenetrationDepth / totalInverseMass;
+
+                correctionVector = collisionInfo.Normal * correctionAmount * separationFactor; (separationFactor обычно < 1, например 0.2-0.8, чтобы избежать дрожания)
+
+                transformA.Position += correctionVector * rigidBodyA.InverseMass;
+
+                transformB.Position -= correctionVector * rigidBodyB.InverseMass; (Static/Kinematic тела не сдвинутся, т.к. InverseMass = 0).
+
+        Разрешение Скоростей (Impulse Calculation & Application):
+
+            Цель: Рассчитать и применить импульс для симуляции отскока и трения.
+
+            Метод (упрощенно, без вращения и трения):
+
+                relativeVelocity = velocityB.LinearVelocity - velocityA.LinearVelocity;
+
+                velocityAlongNormal = Vector2.Dot(relativeVelocity, collisionInfo.Normal);
+
+                Если velocityAlongNormal > 0, объекты уже расходятся, импульс не нужен.
+
+                e = Math.Min(rigidBodyA.Restitution, rigidBodyB.Restitution); // Коэффициент упругости
+
+                j = -(1 + e) * velocityAlongNormal / totalInverseMass; // Величина импульса
+
+                impulseVector = collisionInfo.Normal * j;
+
+                velocityA.LinearVelocity -= impulseVector * rigidBodyA.InverseMass;
+
+                velocityB.LinearVelocity += impulseVector * rigidBodyB.InverseMass;
+
+            Полная версия включает расчет относительной скорости в точке контакта (учитывая вращение), расчет импульса трения (перпендикулярно нормали, зависит от нормального импульса j и коэффициентов трения), и применение изменений к AngularVelocity через момент импульса. Это значительно сложнее.
+
+    Выход: TransformComponent и VelocityComponent у столкнувшихся объектов изменены.
+
+5. CleanupSystem
+
+    Задача: Удалить временные компоненты, созданные на этом шаге физики.
+
+    Запрос (Query): Все Entity с CollisionInfoComponent.
+
+    Логика: Для каждого такого Entity удалить CollisionInfoComponent.
+
+    Выход: Временные компоненты удалены, система готова к следующему шагу PhysicsStep.
+
+Это детальный обзор систем. Начать стоит с самых простых версий (MovementSystem, AABB CollisionDetection, простое разрешение проникновения), а затем постепенно усложнять каждую систему, добавляя вращение, трение, разные формы коллайдеров и оптимизации.
