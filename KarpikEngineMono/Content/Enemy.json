@@ -1,0 +1,49 @@
+{
+    "Components": [
+      {
+        "$Type": "SpriteRenderer",
+        "Color": {
+          "B": 255,
+          "G": 255,
+          "R": 255,
+          "A": 255
+        },
+        "Effect": 0,
+        "Layer": 0.0,
+        "TexturePath": "Player"
+      },
+      {
+        "$Type": "Transform",
+        "Position": "100, 100",
+        "Rotation": 0.0,
+        "Scale": "1, 1"
+      },
+      {
+        "$Type": "RigidBody",
+        "Mass": 1.0,
+        "MomentOfInertia": 0.0,
+        "Restitution": 0.0,
+        "StaticFriction": 0.0,
+        "DynamicFriction": 0.0,
+        "Type": "Dynamic",
+        "Mode": "ContinuousSpeculative"
+      },
+      {
+        "$Type": "ColliderBox",
+        "Size": "32, 32",
+        "Offset": "0, 0",
+        "RotationOffset": 0.0,
+        "IsTrigger": false
+      },
+      {
+        "$Type": "Speed",
+        "Value": 500.0
+      },
+      {
+        "$Type": "Enemy"
+      },
+      {
+        "$Type": "FollowPlayer"
+      }
+    ]
+  }
