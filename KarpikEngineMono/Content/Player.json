@@ -28,7 +28,8 @@
       "Restitution": 0.0,
       "StaticFriction": 0.0,
       "DynamicFriction": 0.0,
-      "Type": "Dynamic"
+      "Type": "Dynamic",
+      "Mode": "ContinuousSpeculative"
     },
     {
       "$Type": "ColliderBox",
@@ -39,7 +40,10 @@
     },
     {
       "$Type": "Speed",
-      "Value": 500.0
+      "Value": 5000.0
+    },
+    {
+      "$Type": "Player"
     }
   ]
 }

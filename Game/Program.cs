@@ -1,4 +1,5 @@
-﻿using KarpikEngineMonoGame;
+﻿using Game.Modules;
+using KarpikEngineMonoGame;
 
 namespace Game;
 
@@ -8,7 +9,9 @@ class Program
     {
         using var main = new Main();
         main.Window.AllowUserResizing = true;
-        main.Add(new DemoModule());
+        main.Add(new DemoModule())
+            .Add(new AIModule())
+            .Add(new MovementModule());
         main.Run();
     }
 }

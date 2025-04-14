@@ -34,12 +34,17 @@ public class CollisionResolutionSystem : IEcsFixedRun
     {
         foreach (var e in _world.Where(out Aspect a))
         {
-            ref var collisions = ref a.collisions.Get(e);
-            ref var transform = ref a.transform.Get(e);
+            ref var collisions1 = ref a.collisions.Get(e);
+            ref var transform1 = ref a.transform.Get(e);
+            ref var velocity1 = ref _velocityPool.TryAddOrGet(e);
 
-            foreach (var collision in collisions.Infos)
+            foreach (var collision in collisions1.Infos)
             {
                 int entityB = collision.Other.ID;
+                
+                a.collisions.TryAddOrGet(entityB);
+                a.transform.TryAddOrGet(entityB);
+                _velocityPool.TryAddOrGet(entityB);
                 
                 // --- Получаем компоненты для обеих сущностей ---
                 // Используем 'out var' и проверку Has() для безопасности

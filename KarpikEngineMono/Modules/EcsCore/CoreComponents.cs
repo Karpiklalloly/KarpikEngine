@@ -6,9 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 namespace KarpikEngineMono.Modules.EcsCore;
 
 [Serializable]
-public struct Player : IEcsTagComponent {}
-
-[Serializable]
 public struct Transform : IEcsComponent
 {
     public Vector2 Position;

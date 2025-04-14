@@ -27,9 +27,10 @@ public struct RigidBody : IEcsComponent
     public double StaticFriction;
     public double DynamicFriction;
     public BodyType Type;
+    public CollisionMode Mode;
 
     [JsonConstructor]
-    public RigidBody(double mass, double momentOfInertia, double restitution, double staticFriction, double dynamicFriction, BodyType type)
+    public RigidBody(double mass, double momentOfInertia, double restitution, double staticFriction, double dynamicFriction, BodyType type, CollisionMode mode)
     {
         Mass = mass;
         InverseMass = mass > 0 ? 1 / mass : 0;
@@ -39,6 +40,7 @@ public struct RigidBody : IEcsComponent
         StaticFriction = staticFriction;
         DynamicFriction = dynamicFriction;
         Type = type;
+        Mode = mode;
     }
     
     public enum BodyType
@@ -46,6 +48,12 @@ public struct RigidBody : IEcsComponent
         Static,
         Dynamic,
         Kinematic
+    }
+    
+    public enum CollisionMode
+    {
+        Discrete,
+        ContinuousSpeculative
     }
 }
 

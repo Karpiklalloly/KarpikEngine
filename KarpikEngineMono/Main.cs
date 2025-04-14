@@ -73,10 +73,6 @@ public class Main : Game
     {
         Time.Update(_stopWatch.Elapsed.TotalSeconds);
         _stopWatch.Restart();
-        
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-            Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
 
         _fixedTimer += Time.DeltaTime;
         

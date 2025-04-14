@@ -1,13 +1,8 @@
-﻿using System;
-using System.Xml.Serialization;
-using DCFApixels.DragonECS;
-using KarpikEngineMono;
+﻿using KarpikEngineMono;
 using KarpikEngineMono.Modules;
 using KarpikEngineMono.Modules.EcsCore;
 using KarpikEngineMono.Modules.Graphics;
 using KarpikEngineMono.Modules.SaveLoad;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Game;
@@ -16,15 +11,12 @@ public class DemoModule : IEcsModule
 {
     public void Import(EcsPipeline.Builder b)
     {
-        b.Add(new MySystem())
-            .Add(new HandleInputMovementSystem(), EcsConsts.BEGIN_LAYER);
+        b.Add(new MySystem());
     }
 }
 
 public class MySystem : IEcsInit, IEcsRun
 {
-    private Transform _transform;
-    
     public void Init()
     {
         Console.WriteLine("init");
@@ -67,20 +59,16 @@ public class MySystem : IEcsInit, IEcsRun
         DebugGraphics.Begin("DemoWindow");
         DebugGraphics.Text("Hello World!");
         DebugGraphics.Text($"{typeof(DemoModule).FullName}");
-        DebugGraphics.Text($"{Time.DeltaTime}");
-        DebugGraphics.Text($"{Time.TotalTime:F2}");
-        if (Worlds.Instance.World.Entities.Count > 0)
-        {
-            var newTransform = Worlds.Instance.World.GetPool<Transform>().Get(1);
-            DebugGraphics.Text($"{(newTransform.Position - _transform.Position).Length():F2}");
-            _transform = newTransform;
-        }
-        
-        foreach (var entity in Worlds.Instance.EventWorld.Entities)
-        {
-            DebugGraphics.Text(entity.ToString());
-        }
+        DebugGraphics.Text($"Delta time: {Time.DeltaTime}");
+        DebugGraphics.Text($"Total time: {Time.TotalTime:F2}");
+        DebugGraphics.Text($"FPS: {1 / Time.DeltaTime:F2}");
+        DebugGraphics.Text($"Entities: {Worlds.Instance.World.Entities.Count}");
         DebugGraphics.End();
+
+        if (Input.IsPressed(Keys.Escape))
+        {
+            Time.IsPaused = !Time.IsPaused;
+        }
         
         if (Input.IsPressed(Keys.F1))
         {
@@ -89,17 +77,13 @@ public class MySystem : IEcsInit, IEcsRun
             var e = world.NewEntityLong();
             template.ApplyTo(e.ID, world);
         }
+        
+        if (Input.IsPressed(Keys.F2))
+        {
+            var template = Loader.LoadTemplate("Enemy");
+            var world = Worlds.Instance.World;
+            var e = world.NewEntityLong();
+            template.ApplyTo(e.ID, world);
+        }
     }
-}
-
-[Serializable]
-public struct HandleInputMovement : IEcsTagComponent
-{
-
-}
-
-[Serializable]
-public struct Speed : IEcsComponent
-{
-    public double Value;
 }
