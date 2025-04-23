@@ -23,7 +23,7 @@
     },
     {
       "$Type": "RigidBody",
-      "Mass": 1.0,
+      "Mass": 10.0,
       "MomentOfInertia": 0.0,
       "Restitution": 0.0,
       "StaticFriction": 0.0,
@@ -40,10 +40,22 @@
     },
     {
       "$Type": "Speed",
-      "Value": 5000.0
+      "BaseValue": 500.0
     },
     {
       "$Type": "Player"
+    },
+    {
+      "$Type": "Health",
+      "Value": {
+        "BaseValue": 100.0
+      },
+      "Min": {
+        "BaseValue": 0.0
+      },
+      "Max": {
+        "BaseValue": 100.0
+      }
     }
   ]
 }

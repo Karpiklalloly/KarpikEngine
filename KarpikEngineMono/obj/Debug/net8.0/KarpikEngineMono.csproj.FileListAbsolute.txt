@@ -14,3 +14,7 @@ C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\K
 C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\refint\KarpikEngineMono.dll
 C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\KarpikEngineMono.pdb
 C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\obj\Debug\net8.0\ref\KarpikEngineMono.dll
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\StatAndAbilities.dll
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\StatAndAbilities.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\Dragon.dll
+C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\bin\Debug\net8.0\Dragon.pdb

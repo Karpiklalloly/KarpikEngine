@@ -3,7 +3,6 @@ using Karpik.Vampire.Scripts.DragonECS.CustomRunners;
 using KarpikEngineMono.Modules.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGame.ImGuiNet;
 using KarpikEngineMono;
 using KarpikEngineMono.Modules;
@@ -66,6 +65,7 @@ public class Main : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         Drawer.SpriteBatch = _spriteBatch;
+        Drawer.Window = Window;
         _builder.Inject(_spriteBatch);
     }
 

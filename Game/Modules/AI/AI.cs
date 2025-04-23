@@ -28,10 +28,15 @@ public static class AI
         ref var player = ref Worlds.Instance.MetaWorld.Get<PlayerRef>();
         if (player.Player.IsNull)
         {
-            player = new PlayerRef()
+            var players = Worlds.Instance.World.Where(EcsStaticMask.Inc<Player>().Build());
+            if (players.Count > 0)
             {
-                Player = Worlds.Instance.World.Where(EcsStaticMask.Inc<Player>().Build()).Longs[0]
-            };
+                player = new PlayerRef()
+                {
+                    Player = players.Longs[0]
+                };
+            }
+            
         }
 
         return ref player;

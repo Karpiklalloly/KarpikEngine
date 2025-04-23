@@ -1,4 +1,6 @@
-﻿using KarpikEngineMono;
+﻿using Game.Modules;
+using Karpik.DragonECS;
+using KarpikEngineMono;
 using KarpikEngineMono.Modules;
 using KarpikEngineMono.Modules.EcsCore;
 using KarpikEngineMono.Modules.Graphics;
@@ -20,49 +22,21 @@ public class MySystem : IEcsInit, IEcsRun
     public void Init()
     {
         Console.WriteLine("init");
-        
-        // var world = Worlds.Instance.World;
-        // var e = world.NewEntityLong();
-        // var transform = new Transform();
-        // transform.Position = new Vector2(100, 100);
-        // transform.Rotation = 0;
-        // transform.Scale = new Vector2(1, 1);
-        // var sprite = new SpriteRenderer();
-        // sprite.Texture = Loader.LoadTexture("Player");
-        // sprite.Color = Color.White;
-        // sprite.Effect = SpriteEffects.None;
-        // sprite.Layer = 0;
-        // sprite.TexturePath = "Player";
-        // var rigidBody = new RigidBody(10, 11, 12, 13, 14, RigidBody.BodyType.Dynamic);
-        // var box = new ColliderBox();
-        // box.Size = new Vector2(1, 1);
-        // box.Offset = new Vector2(0, 0);
-        // box.IsTrigger = false;
-        //
-        // e.Add<Transform>() = transform;
-        // e.Add<SpriteRenderer>() = sprite;
-        // e.Add<RigidBody>() = rigidBody;
-        // e.Add<HandleInputMovement>();
-        // e.Add<ColliderBox>() = box;
-        //
-        // ComponentsTemplate template = new ComponentsTemplate(transform, sprite, rigidBody, box, new HandleInputMovement());
-        // Loader.Serialize(template, "test physics");
-        //
-        // var t = Loader.LoadTemplate("test physics");
-        // var e2 = world.NewEntityLong();
-        // Loader.Serialize(t, "test physics2");
-        // t.ApplyTo(e2.ID, world);
     }
 
     public void Run()
     {
         DebugGraphics.Begin("DemoWindow");
-        DebugGraphics.Text("Hello World!");
-        DebugGraphics.Text($"{typeof(DemoModule).FullName}");
-        DebugGraphics.Text($"Delta time: {Time.DeltaTime}");
         DebugGraphics.Text($"Total time: {Time.TotalTime:F2}");
+        DebugGraphics.Text($"Delta time: {Time.DeltaTime}");
         DebugGraphics.Text($"FPS: {1 / Time.DeltaTime:F2}");
         DebugGraphics.Text($"Entities: {Worlds.Instance.World.Entities.Count}");
+        DebugGraphics.Text($"Event Entities: {Worlds.Instance.EventWorld.Entities.Count}");
+        if (!Worlds.Instance.MetaWorld.GetPlayer().Player.IsNull)
+        {
+            var health = Worlds.Instance.MetaWorld.GetPlayer().Player.Get<Health>();
+            DebugGraphics.Text($"Player Health: {health.ModifiedValue} of {health.Max.ModifiedValue}");
+        }
         DebugGraphics.End();
 
         if (Input.IsPressed(Keys.Escape))
@@ -84,6 +58,25 @@ public class MySystem : IEcsInit, IEcsRun
             var world = Worlds.Instance.World;
             var e = world.NewEntityLong();
             template.ApplyTo(e.ID, world);
+        }
+
+        if (Input.IsPressed(Keys.F3))
+        {
+            var template = new ComponentsTemplate(
+                new SpriteRenderer(),
+                new Transform(),
+                new HandleInputMovement(),
+                new RigidBody(10, 11, 12, 13, 14, RigidBody.BodyType.Dynamic, RigidBody.CollisionMode.ContinuousSpeculative),
+                new ColliderBox(),
+                new Speed(),
+                new Player(),
+                new Health());
+            Loader.Serialize(template, "test template");
+        }
+
+        if (Input.IsPressed(Keys.F4))
+        {
+            Worlds.Instance.EventWorld.SendEvent(new KillEvent());
         }
     }
 }

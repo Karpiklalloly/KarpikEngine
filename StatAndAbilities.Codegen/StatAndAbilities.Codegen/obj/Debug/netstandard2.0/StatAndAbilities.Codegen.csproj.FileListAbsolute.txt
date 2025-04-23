@@ -1,0 +1,10 @@
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\bin\Debug\netstandard2.0\StatAndAbilities.Codegen.deps.json
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\bin\Debug\netstandard2.0\StatAndAbilities.Codegen.dll
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\bin\Debug\netstandard2.0\StatAndAbilities.Codegen.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\obj\Debug\netstandard2.0\StatAndAbilities.Codegen.csproj.AssemblyReference.cache
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\obj\Debug\netstandard2.0\StatAndAbilities.Codegen.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\obj\Debug\netstandard2.0\StatAndAbilities.Codegen.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\obj\Debug\netstandard2.0\StatAndAbilities.Codegen.AssemblyInfo.cs
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\obj\Debug\netstandard2.0\StatAndAbilities.Codegen.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\obj\Debug\netstandard2.0\StatAndAbilities.Codegen.dll
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities.Codegen\StatAndAbilities.Codegen\obj\Debug\netstandard2.0\StatAndAbilities.Codegen.pdb

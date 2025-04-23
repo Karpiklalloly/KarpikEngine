@@ -166,12 +166,22 @@
       "System.Numerics.Vectors/4.4.0": {},
       "System.Runtime.CompilerServices.Unsafe/4.4.0": {},
       "System.ValueTuple/4.5.0": {},
+      "Dragon/1.0.0": {
+        "runtime": {
+          "Dragon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "KarpikEngineMono/1.0.0": {
         "dependencies": {
+          "Dragon": "1.0.0",
           "MonoGame.Content.Builder.Task": "3.8.3",
           "MonoGame.Framework.DesktopGL": "3.8.3",
           "MonoGame.ImGuiNet": "1.1.0",
-          "Newtonsoft.Json": "13.0.3"
+          "Newtonsoft.Json": "13.0.3",
+          "StatAndAbilities": "1.0.0"
         },
         "runtime": {
           "KarpikEngineMono.dll": {
@@ -190,6 +200,17 @@
           "Monogame.ImGuiNet.dll": {
             "assemblyVersion": "1.1.0.0",
             "fileVersion": "1.1.0.0"
+          }
+        }
+      },
+      "StatAndAbilities/1.0.0": {
+        "dependencies": {
+          "Dragon": "1.0.0"
+        },
+        "runtime": {
+          "StatAndAbilities.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       }
@@ -285,12 +306,22 @@
       "path": "system.valuetuple/4.5.0",
       "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
     },
+    "Dragon/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "KarpikEngineMono/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "MonoGame.ImGuiNet/1.1.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "StatAndAbilities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

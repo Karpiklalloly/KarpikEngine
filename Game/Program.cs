@@ -1,4 +1,5 @@
 ﻿using Game.Modules;
+using Karpik.StatAndAbilities;
 using KarpikEngineMonoGame;
 
 namespace Game;

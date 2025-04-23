@@ -41,3 +41,7 @@ C:\Users\artem\source\repos\KarpikEngineMono\Game\obj\Debug\net8.0\refint\Game.d
 C:\Users\artem\source\repos\KarpikEngineMono\Game\obj\Debug\net8.0\Game.pdb
 C:\Users\artem\source\repos\KarpikEngineMono\Game\obj\Debug\net8.0\Game.genruntimeconfig.cache
 C:\Users\artem\source\repos\KarpikEngineMono\Game\obj\Debug\net8.0\ref\Game.dll
+C:\Users\artem\source\repos\KarpikEngineMono\Game\bin\Debug\net8.0\StatAndAbilities.dll
+C:\Users\artem\source\repos\KarpikEngineMono\Game\bin\Debug\net8.0\StatAndAbilities.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\Game\bin\Debug\net8.0\Dragon.dll
+C:\Users\artem\source\repos\KarpikEngineMono\Game\bin\Debug\net8.0\Dragon.pdb

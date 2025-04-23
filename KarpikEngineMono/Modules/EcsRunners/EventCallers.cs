@@ -294,7 +294,7 @@ namespace Karpik.DragonECS
             
         }
         
-        public abstract void RunOnEvent(ref TEvent evt, ref TAspect aspect);
+        protected abstract void RunOnEvent(ref TEvent evt, ref TAspect aspect);
     }
     
     public abstract class RunOnRequestSystem<TRequest, TAspect> : IEcsRunOnRequest<TRequest>
@@ -321,7 +321,7 @@ namespace Karpik.DragonECS
             
         }
         
-        public abstract void RunOnEvent(ref TRequest evt, ref TAspect aspect);
+        protected abstract void RunOnEvent(ref TRequest evt, ref TAspect aspect);
     }
     
     public abstract class FixedRunOnEventSystem<TEvent, TAspect> : IEcsFixedRunOnEvent<TEvent>
@@ -388,7 +388,6 @@ namespace Karpik.DragonECS
     
     public interface IEcsComponentRequest : IEcsComponent
     {
-        public entlong Source { get; set; }
         public entlong Target { get; set; }
     }
 

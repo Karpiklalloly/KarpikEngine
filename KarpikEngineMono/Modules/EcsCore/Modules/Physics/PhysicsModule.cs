@@ -7,7 +7,7 @@ public class PhysicsModule : IEcsModule
         b
             .Add(new GlobalForceApplicationSystem())
             .Add(new MovementSystem())
-            .Add(new CollisionDetectionSystem(new DiscreteDetectionMode()))
+            .Add(new CollisionDetectionSystem())
             .Add(new CollisionResolutionSystem())
             .Add(new CleanupSystem(), EcsConsts.POST_END_LAYER);
     }

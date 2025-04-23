@@ -1,0 +1,11 @@
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\bin\Debug\net8.0\Dragon.deps.json
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\bin\Debug\net8.0\Dragon.dll
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\bin\Debug\net8.0\Dragon.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\obj\Debug\net8.0\Dragon.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\obj\Debug\net8.0\Dragon.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\obj\Debug\net8.0\Dragon.AssemblyInfo.cs
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\obj\Debug\net8.0\Dragon.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\obj\Debug\net8.0\Dragon.dll
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\obj\Debug\net8.0\refint\Dragon.dll
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\obj\Debug\net8.0\Dragon.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\Dragon\obj\Debug\net8.0\ref\Dragon.dll

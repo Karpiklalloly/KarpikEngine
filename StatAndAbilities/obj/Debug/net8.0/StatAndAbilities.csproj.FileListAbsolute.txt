@@ -1,0 +1,15 @@
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\bin\Debug\net8.0\StatAndAbilities.deps.json
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\bin\Debug\net8.0\StatAndAbilities.dll
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\bin\Debug\net8.0\StatAndAbilities.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\StatAndAbilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\StatAndAbilities.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\StatAndAbilities.AssemblyInfo.cs
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\StatAndAbilities.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\StatAndAbilities.dll
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\refint\StatAndAbilities.dll
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\StatAndAbilities.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\ref\StatAndAbilities.dll
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\bin\Debug\net8.0\Dragon.dll
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\bin\Debug\net8.0\Dragon.pdb
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\StatAndAbilities.csproj.AssemblyReference.cache
+C:\Users\artem\source\repos\KarpikEngineMono\StatAndAbilities\obj\Debug\net8.0\StatAndA.F0272B6F.Up2Date

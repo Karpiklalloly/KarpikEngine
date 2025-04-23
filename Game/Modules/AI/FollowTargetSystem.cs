@@ -29,7 +29,7 @@ public class FollowTargetSystem : IPausableProcess
             var entity = _world.GetEntityLong(e);
             var direction = (targetTransform.Position - transform.Position);
             direction.Normalize();
-            entity.Move(direction * (float)speed.Value);
+            entity.MoveBySpeed(direction);
         }
     }
 }

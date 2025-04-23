@@ -9,6 +9,7 @@ namespace KarpikEngineMono.Modules.Graphics;
 public static class Drawer
 {
     internal static SpriteBatch SpriteBatch;
+    internal static GameWindow Window;
 
     private static DrawAction[] _actions = new DrawAction[128];
     private static int _actionsCount = 0;
@@ -19,7 +20,7 @@ public static class Drawer
         _actions[_actionsCount++] = new DrawAction()
         {
             Texture = spriteRenderer.Texture,
-            Position = transform.Position,
+            Position = new Vector2(transform.Position.X, Window.ClientBounds.Height - transform.Position.Y),
             Color = spriteRenderer.Color,
             Rotation = transform.Rotation,
             Scale = transform.Scale,

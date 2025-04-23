@@ -1,0 +1,61 @@
+{
+  "Components": [
+    {
+      "$Type": "SpriteRenderer",
+      "Color": {
+        "B": 0,
+        "G": 0,
+        "R": 0,
+        "A": 0
+      },
+      "Effect": "None",
+      "Layer": 0.0,
+      "TexturePath": null
+    },
+    {
+      "$Type": "Transform",
+      "Position": "0, 0",
+      "Rotation": 0.0,
+      "Scale": "0, 0"
+    },
+    {
+      "$Type": "HandleInputMovement"
+    },
+    {
+      "$Type": "RigidBody",
+      "Mass": 10.0,
+      "MomentOfInertia": 11.0,
+      "Restitution": 12.0,
+      "StaticFriction": 13.0,
+      "DynamicFriction": 14.0,
+      "Type": "Dynamic",
+      "Mode": "ContinuousSpeculative"
+    },
+    {
+      "$Type": "ColliderBox",
+      "Size": "0, 0",
+      "Offset": "0, 0",
+      "RotationOffset": 0.0,
+      "IsTrigger": false
+    },
+    {
+      "$Type": "Speed",
+      "BaseValue": 0.0
+    },
+    {
+      "$Type": "Player"
+    },
+    {
+      "$Type": "Health",
+      "Value": {
+        "BaseValue": 0.0
+      },
+      "Min": {
+        "BaseValue": 0.0
+      },
+      "Max": {
+        "BaseValue": 0.0
+      }
+    }
+  ]
+}

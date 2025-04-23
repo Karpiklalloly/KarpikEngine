@@ -1,13 +1,10 @@
-﻿namespace Game.Modules;
+﻿using System.Runtime.Serialization;
+using Karpik.StatAndAbilities;
+
+namespace Game.Modules;
 
 [Serializable]
-public struct HandleInputMovement : IEcsTagComponent
-{
+public struct HandleInputMovement : IEcsTagComponent;
 
-}
-
-[Serializable]
-public struct Speed : IEcsComponent
-{
-    public double Value;
-}
+[Stat]
+public partial struct Speed { }

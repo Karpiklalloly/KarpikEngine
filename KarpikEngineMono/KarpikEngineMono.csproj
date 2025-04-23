@@ -38,7 +38,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoreGen\CoreGen\CoreGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Dragon\Dragon.csproj" />
     <ProjectReference Include="..\MonoGame.ImGuiNet\Monogame.ImGuiNet.csproj" />
+    <ProjectReference Include="..\StatAndAbilities.Codegen\StatAndAbilities.Codegen\StatAndAbilities.Codegen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\StatAndAbilities\StatAndAbilities.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ThirdParty\DragonECS\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />
