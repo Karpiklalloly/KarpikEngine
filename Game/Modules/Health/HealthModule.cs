@@ -6,6 +6,7 @@ public class HealthModule : IEcsModule
     {
         b
             .Add(new DealDamageEventSystem())
-            .Add(new DealDamageSystem());
+            .Add(new DealDamageSystem())
+            .Add(new DealDamageOnContactSystem());
     }
 }

@@ -8,14 +8,13 @@ using KarpikEngineMono;
 using KarpikEngineMono.Modules;
 using KarpikEngineMono.Modules.EcsCore;
 using KarpikEngineMono.Modules.EcsRunners;
-using KarpikEngineMono.Modules.SaveLoad;
+using KarpikEngineMono.Modules.VisualElements;
 
 namespace KarpikEngineMonoGame;
 
 public class Main : Game
 {
     private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
     private ImGuiRenderer _imGuiRenderer;
 
     private EcsPipeline.Builder _builder;
@@ -51,6 +50,8 @@ public class Main : Game
         InitEcs();
         Worlds.Instance.Pipeline = _pipeline;
 
+        UI.Root = new VisualElement(new Rectangle(Point.Zero, Window.ClientBounds.Size));
+        UI.DefaultFont = Loader.Load<SpriteFont>("DefaultFont");
         base.Initialize();
     }
 
@@ -63,10 +64,10 @@ public class Main : Game
 
     protected override void LoadContent()
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-        Drawer.SpriteBatch = _spriteBatch;
+        Drawer.SpriteBatch = new SpriteBatch(GraphicsDevice);
         Drawer.Window = Window;
-        _builder.Inject(_spriteBatch);
+        UI.UISpriteBatch = new SpriteBatch(GraphicsDevice);
+        _builder.Inject(Drawer.SpriteBatch);
     }
 
     protected override void Update(GameTime gameTime)
@@ -85,6 +86,8 @@ public class Main : Game
         _pipeline.GetRunner<PausableRunner>().PausableRun();
         _pipeline.GetRunner<PausableLateRunner>().PausableLateRun();
         
+        UI.Update();
+        
         base.Update(gameTime);
     }
 
@@ -92,7 +95,8 @@ public class Main : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         Drawer.Draw();
-
+        UI.Draw();
+        
         base.Draw(gameTime);
 
         _imGuiRenderer.BeginLayout(gameTime);

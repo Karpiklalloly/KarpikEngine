@@ -2,7 +2,7 @@
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 
-namespace KarpikEngineMono.Modules.SaveLoad;
+namespace KarpikEngineMono.Modules;
 
 public class ComponentArrayConverter : JsonConverter<IEcsComponentMember[]>
 {

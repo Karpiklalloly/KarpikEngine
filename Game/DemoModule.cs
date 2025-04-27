@@ -4,7 +4,6 @@ using KarpikEngineMono;
 using KarpikEngineMono.Modules;
 using KarpikEngineMono.Modules.EcsCore;
 using KarpikEngineMono.Modules.Graphics;
-using KarpikEngineMono.Modules.SaveLoad;
 using Microsoft.Xna.Framework.Input;
 
 namespace Game;
@@ -35,7 +34,9 @@ public class MySystem : IEcsInit, IEcsRun
         if (!Worlds.Instance.MetaWorld.GetPlayer().Player.IsNull)
         {
             var health = Worlds.Instance.MetaWorld.GetPlayer().Player.Get<Health>();
+            var pos = Worlds.Instance.MetaWorld.GetPlayer().Player.Get<Transform>().Position;
             DebugGraphics.Text($"Player Health: {health.ModifiedValue} of {health.Max.ModifiedValue}");
+            DebugGraphics.Text($"Player Position: {pos.X:F2}, {pos.Y:F2}");
         }
         DebugGraphics.End();
 

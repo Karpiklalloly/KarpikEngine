@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using KarpikEngineMono.Modules.EcsCore;
 
-namespace KarpikEngineMono.Modules.SaveLoad;
+namespace KarpikEngineMono.Modules;
 
 [Serializable]
 public class ComponentsTemplate

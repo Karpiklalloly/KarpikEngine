@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json.Converters;
 
-namespace KarpikEngineMono.Modules.SaveLoad;
+namespace KarpikEngineMono.Modules;
 
 public static class Loader
 {

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Karpik.DragonECS;
+using Microsoft.Xna.Framework;
 
 namespace KarpikEngineMono.Modules.EcsCore;
 
@@ -75,11 +76,13 @@ public struct ColliderCircle : IEcsComponent
     public bool IsTrigger;
 }
 
-public struct Collisions : IEcsComponent
+public struct CollisionsEvent : IEcsComponentEvent
 {
+    public entlong Source { get; set; }
+    public entlong Target { get; set; }
     public List<CollisionInfo> Infos;
 
-    public Collisions()
+    public CollisionsEvent()
     {
         Infos = new List<CollisionInfo>();
     }

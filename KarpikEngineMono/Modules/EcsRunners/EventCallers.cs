@@ -2,6 +2,7 @@
 using DCFApixels.DragonECS;
 using DCFApixels.DragonECS.RunnersCore;
 using KarpikEngineMono;
+using KarpikEngineMono.Modules.EcsCore;
 using KarpikEngineMono.Modules.EcsRunners;
 
 namespace Karpik.DragonECS
@@ -122,6 +123,16 @@ namespace Karpik.DragonECS
                 if (span.Count == 0)
                 {
                     return;
+                }
+
+                var pool = _eventWorld.GetPool<T>();
+                var count = pool.Count;
+                if (typeof(T) == typeof(CollisionsEvent) && (span.Count >= 3 || count >= 3))
+                {
+                    if (span.Count == count)
+                    {
+                        
+                    }
                 }
 
                 foreach (var e in span)

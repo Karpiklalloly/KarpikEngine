@@ -1,2 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/artem/source/repos/KarpikEngineMono/KarpikEngineMono/Content/player.png","C:/Users/artem/source/repos/KarpikEngineMono/KarpikEngineMono/Content/bin/DesktopGL/player.xnb","TextureProcessor","Texture2DContent",564,2773,0,1527943
+"C:/Users/artem/source/repos/KarpikEngineMono/KarpikEngineMono/Content/DefaultFont.spritefont","C:/Users/artem/source/repos/KarpikEngineMono/KarpikEngineMono/Content/bin/DesktopGL/DefaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21529,0,7057537

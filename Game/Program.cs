@@ -12,7 +12,8 @@ class Program
         main.Window.AllowUserResizing = true;
         main.Add(new DemoModule())
             .Add(new AIModule())
-            .Add(new MovementModule());
+            .Add(new MovementModule())
+            .Add(new UIModule());
         main.Run();
     }
 }

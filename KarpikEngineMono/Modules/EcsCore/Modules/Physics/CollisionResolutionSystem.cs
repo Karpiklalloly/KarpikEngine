@@ -1,22 +1,18 @@
-﻿using KarpikEngineMono.Modules.EcsRunners;
+﻿using Karpik.DragonECS;
+using KarpikEngineMono.Modules.EcsRunners;
 using Microsoft.Xna.Framework;
 
 namespace KarpikEngineMono.Modules.EcsCore;
 
-public class CollisionResolutionSystem : IEcsFixedRun
+public class CollisionResolutionSystem : IEcsFixedRunOnEvent<CollisionsEvent>
 {
-    private class Aspect : EcsAspect
-    {
-        public EcsPool<Collisions> collisions = Inc;
-        public EcsPool<Transform> transform = Inc;
-    }
-    
     private const float PenetrationCorrectionFactor = 0.6f;
     // Минимальная глубина проникновения, которую стоит исправлять, чтобы избежать лишних вычислений
     private const float PenetrationSlop = 0.01f;
     
     private EcsDefaultWorld _world;
-    private EcsPool<Collisions> _collisionsPool;
+    private EcsEventWorld _eventWorld;
+    private EcsPool<CollisionsEvent> _collisions;
     private EcsPool<Transform> _transformPool;
     private EcsPool<Velocity> _velocityPool;
     private EcsPool<RigidBody> _rigidBodyPool;
@@ -24,71 +20,51 @@ public class CollisionResolutionSystem : IEcsFixedRun
     public CollisionResolutionSystem()
     {
         _world = Worlds.Instance.World;
-        _collisionsPool = _world.GetPool<Collisions>();
+        _eventWorld = Worlds.Instance.EventWorld;
+        _collisions = _eventWorld.GetPool<CollisionsEvent>();
         _transformPool = _world.GetPool<Transform>();
         _velocityPool = _world.GetPool<Velocity>();
         _rigidBodyPool = _world.GetPool<RigidBody>();
     }
     
-    public void FixedRun()
+    public void RunOnEvent(ref CollisionsEvent evt)
     {
-        foreach (var e in _world.Where(out Aspect a))
+        ref var collisions1 = ref evt;
+        ref var transform1 = ref _transformPool.Get(collisions1.Source.ID);
+        ref var velocity1 = ref _velocityPool.TryAddOrGet(collisions1.Source.ID);
+
+        var entityA = collisions1.Source.ID;
+
+        foreach (var collision in collisions1.Infos)
         {
-            ref var collisions1 = ref a.collisions.Get(e);
-            ref var transform1 = ref a.transform.Get(e);
-            ref var velocity1 = ref _velocityPool.TryAddOrGet(e);
+            int entityB = collision.Other.ID;
+                
+            _collisions.TryAddOrGet(entityB);
+            _transformPool.TryAddOrGet(entityB);
+            _velocityPool.TryAddOrGet(entityB);
 
-            foreach (var collision in collisions1.Infos)
+            ref var transformA = ref _transformPool.Get(entityA);
+            ref var velocityA = ref _velocityPool.Get(entityA);
+            ref var rigidBodyA = ref _rigidBodyPool.Get(entityA);
+
+            ref var transformB = ref _transformPool.Get(entityB);
+            ref var velocityB = ref _velocityPool.Get(entityB);
+            ref var rigidBodyB = ref _rigidBodyPool.Get(entityB);
+
+            // Пропускаем разрешение для двух статических/кинематических объектов
+            // (InverseMass будет 0 для них)
+            double totalInverseMass = rigidBodyA.InverseMass + rigidBodyB.InverseMass;
+            if (Math.Abs(totalInverseMass) < 0.0001f) // Сравнение с плавающей точкой
             {
-                int entityB = collision.Other.ID;
-                
-                a.collisions.TryAddOrGet(entityB);
-                a.transform.TryAddOrGet(entityB);
-                _velocityPool.TryAddOrGet(entityB);
-                
-                // --- Получаем компоненты для обеих сущностей ---
-                // Используем 'out var' и проверку Has() для безопасности
-
-                bool hasAllComponentsA = _transformPool.Has(e)
-                                      && _velocityPool.Has(e) // Velocity не нужна для Static, но нужна для B
-                                      && _rigidBodyPool.Has(e);
-
-                bool hasAllComponentsB = _transformPool.Has(entityB)
-                                      && _velocityPool.Has(entityB)
-                                      && _rigidBodyPool.Has(entityB);
-
-                // Если у одного из участников нет нужных компонентов, не можем разрешить столкновение
-                // (Это может случиться, если сущность была удалена между детекцией и разрешением)
-                if (!hasAllComponentsA || !hasAllComponentsB)
-                {
-                     // Можно залогировать предупреждение
-                     Console.WriteLine($"[CollisionResolution] Warning: Missing components for collision pair ({e}, {entityB}). Skipping.");
-                    continue;
-                }
-
-                ref var transformA = ref _transformPool.Get(e);
-                ref var velocityA = ref _velocityPool.Get(e);
-                ref var rigidBodyA = ref _rigidBodyPool.Get(e);
-
-                ref var transformB = ref _transformPool.Get(entityB);
-                ref var velocityB = ref _velocityPool.Get(entityB);
-                ref var rigidBodyB = ref _rigidBodyPool.Get(entityB);
-
-                // Пропускаем разрешение для двух статических/кинематических объектов
-                // (InverseMass будет 0 для них)
-                double totalInverseMass = rigidBodyA.InverseMass + rigidBodyB.InverseMass;
-                if (Math.Abs(totalInverseMass) < 0.0001f) // Сравнение с плавающей точкой
-                {
-                    continue;
-                }
-
-                // --- Разрешение Столкновения ---
-                ResolvePenetration(ref transformA, ref rigidBodyA, ref transformB, ref rigidBodyB, collision.Normal, collision.PenetrationDepth, totalInverseMass);
-                ResolveVelocity(ref velocityA, ref rigidBodyA, ref velocityB, ref rigidBodyB, collision.Normal, totalInverseMass);
-
-                // Компонент CollisionInfoComponent НЕ удаляется здесь.
-                // Он будет удален позже системой CleanupSystem.
+                continue;
             }
+
+            // --- Разрешение Столкновения ---
+            ResolvePenetration(ref transformA, ref rigidBodyA, ref transformB, ref rigidBodyB, collision.Normal, collision.PenetrationDepth, totalInverseMass);
+            ResolveVelocity(ref velocityA, ref rigidBodyA, ref velocityB, ref rigidBodyB, collision.Normal, totalInverseMass);
+
+            // Компонент CollisionInfoComponent НЕ удаляется здесь.
+            // Он будет удален позже системой CleanupSystem.
         }
     }
     

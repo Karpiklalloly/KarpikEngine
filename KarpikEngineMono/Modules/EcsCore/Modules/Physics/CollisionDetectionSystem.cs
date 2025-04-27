@@ -1,4 +1,5 @@
-﻿using KarpikEngineMono.Modules.EcsRunners;
+﻿using Karpik.DragonECS;
+using KarpikEngineMono.Modules.EcsRunners;
 using Microsoft.Xna.Framework;
 
 namespace KarpikEngineMono.Modules.EcsCore;
@@ -56,13 +57,13 @@ public class CollisionDetectionSystem : IEcsFixedRun
     private List<ColliderWorldData> _colliderDataCache = new();
     
     private EcsDefaultWorld _world;
-    private EcsPool<Collisions> _collisionsPool;
+    private EcsEventWorld _eventWorld;
     private EcsPool<Velocity> _velocityPool;
 
     public CollisionDetectionSystem()
     {
         _world = Worlds.Instance.World;
-        _collisionsPool = _world.GetPool<Collisions>();
+        _eventWorld = Worlds.Instance.EventWorld;
         _velocityPool = _world.GetPool<Velocity>();
     }
     
@@ -480,23 +481,17 @@ public class CollisionDetectionSystem : IEcsFixedRun
             }
 
             // Нормаль в CollisionInfo указывает ОТ ДРУГОГО объекта К ТЕКУЩЕМУ
-            ref var c1 = ref _collisionsPool.TryAddOrGet(entityAId);
-            c1.Infos ??= [];
-            c1.Infos.Add(new CollisionInfo()
+            var c = new CollisionsEvent();
+            c.Source = _world.GetEntityLong(entityAId);
+            c.Target = _world.GetEntityLong(entityBId);
+            c.Infos ??= [];
+            c.Infos.Add(new CollisionInfo()
             {
                 Other = _world.GetEntityLong(entityBId),
                 Normal = result.Normal, // Нормаль от B к A
                 PenetrationDepth = result.PenetrationDepth
             });
-            
-            ref var c2 = ref _collisionsPool.TryAddOrGet(entityBId);
-            c2.Infos ??= [];
-            c2.Infos.Add(new CollisionInfo()
-            {
-                Other = _world.GetEntityLong(entityAId),
-                Normal = -result.Normal, // Нормаль от A к B
-                PenetrationDepth = result.PenetrationDepth
-            });
+            _eventWorld.SendEvent(c);
             
             //Console.WriteLine($"Collision between {entityAId} and {entityBId}, Depth: {result.PenetrationDepth}");
         }

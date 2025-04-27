@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\karpikenginemono\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|solutionrelative:karpikenginemono\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73ADD226-168C-466B-B052-D270864B3E9A}|Game\\Game.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\game\\demomodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73ADD226-168C-466B-B052-D270864B3E9A}|Game\\Game.csproj|solutionrelative:game\\demomodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\karpikenginemono\\modules\\saveload\\componentstemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|solutionrelative:karpikenginemono\\modules\\saveload\\componentstemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,32 +19,16 @@
       "RelativeMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|solutionrelative:karpikenginemono\\modules\\ecscore\\corecomponentextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73ADD226-168C-466B-B052-D270864B3E9A}|Game\\Game.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\game\\demomodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73ADD226-168C-466B-B052-D270864B3E9A}|Game\\Game.csproj|solutionrelative:game\\demomodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\karpikenginemono\\modules\\ecscore\\corecomponents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|solutionrelative:karpikenginemono\\modules\\ecscore\\corecomponents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\karpikenginemono\\modules\\saveload\\loader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|solutionrelative:karpikenginemono\\modules\\saveload\\loader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{73ADD226-168C-466B-B052-D270864B3E9A}|Game\\Game.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\game\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{73ADD226-168C-466B-B052-D270864B3E9A}|Game\\Game.csproj|solutionrelative:game\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\karpikenginemono\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|solutionrelative:karpikenginemono\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\karpikenginemono\\modules\\ecscore\\modules\\visual\\drawspritesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|solutionrelative:karpikenginemono\\modules\\ecscore\\modules\\visual\\drawspritesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\karpikenginemono\\modules\\ecscore\\modules\\movement\\movementmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|solutionrelative:karpikenginemono\\modules\\ecscore\\modules\\movement\\movementmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4B7A2BF7-28DF-4204-AB77-F890824431D5}|KarpikEngineMono\\KarpikEngineMono.csproj|c:\\users\\artem\\source\\repos\\karpikenginemono\\karpikenginemono\\modules\\time\\time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,6 +37,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\CoreGen\\CoreGen\\ComponentConverterIncrementalGenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CoreGen\\CoreGen\\ComponentConverterIncrementalGenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\EcsCore\\Modules\\Movement\\MovementModule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KarpikEngineMono\\Modules\\EcsCore\\Modules\\Movement\\MovementModule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,24 +50,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Main.cs",
               "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Main.cs",
               "RelativeDocumentMoniker": "KarpikEngineMono\\Main.cs",
               "ToolTip": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Main.cs",
               "RelativeToolTip": "KarpikEngineMono\\Main.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAAAYAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAwwDQAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-10T14:38:29.678Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CoreComponents.cs",
               "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\EcsCore\\CoreComponents.cs",
               "RelativeDocumentMoniker": "KarpikEngineMono\\Modules\\EcsCore\\CoreComponents.cs",
@@ -97,24 +94,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "DemoModule.cs",
               "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\Game\\DemoModule.cs",
               "RelativeDocumentMoniker": "Game\\DemoModule.cs",
               "ToolTip": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\Game\\DemoModule.cs",
               "RelativeToolTip": "Game\\DemoModule.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAC4AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAC8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-10T14:28:06.951Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{dcc4ea97-1c0c-482b-b205-e541c0df9728}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 8,
               "Title": "ComponentConverterIncrementalGenerator.cs",
               "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\CoreGen\\CoreGen\\ComponentConverterIncrementalGenerator.cs",
               "RelativeDocumentMoniker": "CoreGen\\CoreGen\\ComponentConverterIncrementalGenerator.cs",
@@ -126,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "DrawSpriteSystem.cs",
               "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\EcsCore\\Modules\\Visual\\DrawSpriteSystem.cs",
               "RelativeDocumentMoniker": "KarpikEngineMono\\Modules\\EcsCore\\Modules\\Visual\\DrawSpriteSystem.cs",
@@ -138,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "MovementModule.cs",
               "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\EcsCore\\Modules\\Movement\\MovementModule.cs",
               "RelativeDocumentMoniker": "KarpikEngineMono\\Modules\\EcsCore\\Modules\\Movement\\MovementModule.cs",
@@ -150,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "Time.cs",
               "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\Time\\Time.cs",
               "RelativeDocumentMoniker": "KarpikEngineMono\\Modules\\Time\\Time.cs",
@@ -162,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "CoreComponentExtensions.cs",
               "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\EcsCore\\CoreComponentExtensions.cs",
               "RelativeDocumentMoniker": "KarpikEngineMono\\Modules\\EcsCore\\CoreComponentExtensions.cs",
@@ -174,25 +176,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Loader.cs",
-              "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\SaveLoad\\Loader.cs",
-              "RelativeDocumentMoniker": "KarpikEngineMono\\Modules\\SaveLoad\\Loader.cs",
-              "ToolTip": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\SaveLoad\\Loader.cs",
-              "RelativeToolTip": "KarpikEngineMono\\Modules\\SaveLoad\\Loader.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAvwB4AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T10:54:28.223Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ComponentsTemplate.cs",
               "DocumentMoniker": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\SaveLoad\\ComponentsTemplate.cs",
               "RelativeDocumentMoniker": "KarpikEngineMono\\Modules\\SaveLoad\\ComponentsTemplate.cs",
               "ToolTip": "C:\\Users\\artem\\source\\repos\\KarpikEngineMono\\KarpikEngineMono\\Modules\\SaveLoad\\ComponentsTemplate.cs",
               "RelativeToolTip": "KarpikEngineMono\\Modules\\SaveLoad\\ComponentsTemplate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-10T07:49:54.079Z",
               "EditorCaption": ""

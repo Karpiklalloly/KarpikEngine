@@ -32,3 +32,5 @@ public struct KillRequest : IEcsComponentRequest
 {
     public entlong Target { get; set; }
 }
+
+public struct DealDamageOnContact : IEcsTagComponent;

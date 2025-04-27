@@ -43,7 +43,7 @@
       "BaseValue": 200.0
     },
     {
-      "$Type": "Player"
+      "$Type": "Enemy"
     },
     {
       "$Type": "Health",
@@ -56,6 +56,9 @@
       "Max": {
         "BaseValue": 100.0
       }
+    },
+    {
+      "$Type": "DealDamageOnContact"
     }
   ]
 }

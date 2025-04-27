@@ -1,4 +1,6 @@
-﻿namespace KarpikEngineMono.Modules.EcsCore;
+﻿using Karpik.DragonECS;
+
+namespace KarpikEngineMono.Modules.EcsCore;
 
 public class PhysicsModule : IEcsModule
 {
@@ -9,6 +11,7 @@ public class PhysicsModule : IEcsModule
             .Add(new MovementSystem())
             .Add(new CollisionDetectionSystem())
             .Add(new CollisionResolutionSystem())
-            .Add(new CleanupSystem(), EcsConsts.POST_END_LAYER);
+            .Add(new CleanupSystem(), EcsConsts.POST_END_LAYER)
+            .AddFixedCaller<CollisionsEvent>(EcsConsts.END_LAYER);
     }
 }

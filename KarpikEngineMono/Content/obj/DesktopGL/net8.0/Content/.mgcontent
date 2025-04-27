@@ -4,9 +4,11 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/artem/source/repos/KarpikEngineMono/KarpikEngineMono/Content/DefaultFont.spritefont</File>
     <File>C:/Users/artem/source/repos/KarpikEngineMono/KarpikEngineMono/Content/player.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
