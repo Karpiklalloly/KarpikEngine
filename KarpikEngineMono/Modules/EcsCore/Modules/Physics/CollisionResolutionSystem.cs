@@ -38,6 +38,23 @@ public class CollisionResolutionSystem : IEcsFixedRunOnEvent<CollisionsEvent>
         foreach (var collision in collisions1.Infos)
         {
             int entityB = collision.Other.ID;
+            
+            bool hasAllComponentsA = _transformPool.Has(entityA)
+                                     && _velocityPool.Has(entityA) // Velocity не нужна для Static, но нужна для B
+                                     && _rigidBodyPool.Has(entityA);
+
+            bool hasAllComponentsB = _transformPool.Has(entityB)
+                                     && _velocityPool.Has(entityB)
+                                     && _rigidBodyPool.Has(entityB);
+
+            // Если у одного из участников нет нужных компонентов, не можем разрешить столкновение
+            // (Это может случиться, если сущность была удалена между детекцией и разрешением)
+            if (!hasAllComponentsA || !hasAllComponentsB)
+            {
+                // Можно залогировать предупреждение
+                Console.WriteLine($"[CollisionResolution] Warning: Missing components for collision pair ({entityA}, {entityB}). Skipping.");
+                continue;
+            }
                 
             _collisions.TryAddOrGet(entityB);
             _transformPool.TryAddOrGet(entityB);

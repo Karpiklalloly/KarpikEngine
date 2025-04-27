@@ -47,4 +47,9 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\artem\source\repos\KarpikEngineMono\CoreGen\CoreGen\bin\Debug\netstandard2.0\CoreGen.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Windows\Microsoft.NET\assembly\GAC_MSIL\netstandard\v4.0_2.0.0.0__cc7b13ffcd2ddd51\netstandard.dll" /&gt;&#xD;
-&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>
+&lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=46664cb7_002De28c_002D4bc6_002Daec9_002Df316782fe55e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="When3Entities_AndCollision_Thenbubububebebe" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::0B8314BD-94B3-4036-9C68-23B6D120CFA0::net8.0::EngineTest.TestCollision.When3Entities_AndCollision_Thenbubububebebe&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

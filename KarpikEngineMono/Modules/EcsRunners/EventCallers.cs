@@ -127,6 +127,11 @@ namespace Karpik.DragonECS
 
                 var pool = _eventWorld.GetPool<T>();
                 var count = pool.Count;
+                if (count != span.Count)
+                {
+                    
+                }
+                
                 if (typeof(T) == typeof(CollisionsEvent) && (span.Count >= 3 || count >= 3))
                 {
                     if (span.Count == count)

@@ -7,7 +7,7 @@ public static class Time
     public static double TotalTime { get; private set; }
     public static bool IsPaused { get; set; }
 
-    internal static void Update(double deltaTime)
+    public static void Update(double deltaTime)
     {
         DeltaTime = deltaTime;
         TotalTime += deltaTime;

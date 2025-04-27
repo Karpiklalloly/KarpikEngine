@@ -13,7 +13,8 @@ class Program
         main.Add(new DemoModule())
             .Add(new AIModule())
             .Add(new MovementModule())
-            .Add(new UIModule());
+            .Add(new UIModule())
+            ;
         main.Run();
     }
 }

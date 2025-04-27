@@ -205,18 +205,18 @@ namespace DCFApixels.DragonECS
                     {
                         _markers[i].Begin();
                         translationCallback(_process[i]);
-//                         try
-//                         {
-//                             translationCallback(_process[i]);
-//                         }
-//                         catch (Exception e)
-//                         {
+//                     try
+//                     {
+//                         translationCallback(_process[i]);
+//                     }
+//                     catch (Exception e)
+//                     {
 // #if DRAGONECS_DISABLE_CATH_EXCEPTIONS
-//                             throw e;
+//                         throw e;
 // #else
-//                             EcsDebug.PrintError(e.Message);
+//                         EcsDebug.PrintError(e);
 // #endif
-//                         }
+//                     }
                         _markers[i].End();
                     }
 #else
