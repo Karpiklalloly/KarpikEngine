@@ -1,0 +1,41 @@
+{
+  "Components": [
+    {
+      "$Type": "Transform",
+      "Position": "100, 100",
+      "Rotation": 0.0,
+      "Scale": "1, 1"
+    },
+    {
+      "$Type": "SpriteRenderer",
+      "Color": {
+        "B": 255,
+        "G": 255,
+        "R": 255,
+        "A": 255
+      },
+      "Effect": "None",
+      "Layer": 0.0,
+      "TexturePath": "Player"
+    },
+    {
+      "$Type": "RigidBody",
+      "Mass": 10.0,
+      "MomentOfInertia": 10.0,
+      "Restitution": 10.0,
+      "StaticFriction": 10.0,
+      "DynamicFriction": 10.0,
+      "Type": "Dynamic"
+    },
+    {
+      "$Type": "ColliderBox",
+      "Size": "1, 1",
+      "Offset": "0, 0",
+      "RotationOffset": 0.0,
+      "IsTrigger": false
+    },
+    {
+      "$Type": "HandleInputMovement"
+    }
+  ]
+}
