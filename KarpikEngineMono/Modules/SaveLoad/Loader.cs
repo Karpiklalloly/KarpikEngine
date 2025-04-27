@@ -9,7 +9,7 @@ public static class Loader
     internal static ContentManager Manager;
 
     private static string RootDirectory =>
-        Path.Combine(@"C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\", "Content");//Manager.RootDirectory);
+        Path.Combine(@"C:\Users\artem\source\repos\KarpikEngineMono\KarpikEngineMono\", Manager.RootDirectory);
     
     public static ComponentsTemplate LoadTemplate(string path)
     {
