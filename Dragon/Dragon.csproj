@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <DefineConstants>DRAGONECS_DISABLE_CATH_EXCEPTIONS</DefineConstants>
+        <DefineConstants>DRAGONECS_STABILITY_MODE</DefineConstants>
     </PropertyGroup>
 
 </Project>

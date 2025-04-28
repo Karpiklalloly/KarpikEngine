@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using DCFApixels.DragonECS;
 using DCFApixels.DragonECS.RunnersCore;
 using KarpikEngineMono;
@@ -129,15 +130,7 @@ namespace Karpik.DragonECS
                 var count = pool.Count;
                 if (count != span.Count)
                 {
-                    
-                }
-                
-                if (typeof(T) == typeof(CollisionsEvent) && (span.Count >= 3 || count >= 3))
-                {
-                    if (span.Count == count)
-                    {
-                        
-                    }
+                    span = _eventWorld.Where(out a);
                 }
 
                 foreach (var e in span)
@@ -147,7 +140,11 @@ namespace Karpik.DragonECS
                         run.RunOnEvent(ref a.evt.Get(e));
                     }
                 }
-                
+
+                // for (int i = 0; i < span.Count; i++)
+                // {
+                //     _eventWorld.DelEntity(span[i]);
+                // }
                 a.evt.ClearAll();
             }
 
@@ -407,13 +404,36 @@ namespace Karpik.DragonECS
         public entlong Target { get; set; }
     }
 
+    internal class ColAspect : EcsAspect
+    {
+        public EcsPool<CollisionsEvent> evt = Inc;
+    }
+
     public static class EventCallersWorldExtensions
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SendEvent<T>(this EcsEventWorld world, T evt) where T : struct, IEcsComponentEvent
         {
-            world.GetPool<T>().TryAddOrGet(world.NewEntity()) = evt;
+            var entities = world.Where(out ColAspect a);
+            var pool = world.GetPool<CollisionsEvent>();
+            var count = pool.Count;
+            if (entities.Count != count)
+            {
+                
+            }
+
+            var entity = world.NewEntityLong();
+            var has1 = entity.Has<CollisionsEvent>();
+            var has2 = world.GetPool<T>().Has(entity.ID);
+            if (has1 || has2)
+            {
+                world.DelEntity(entity);
+                entity = world.NewEntityLong();
+            }
+            world.GetPool<T>().Add(entity.ID) = evt;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SendRequest<T>(this EcsDefaultWorld world, T evt) where T : struct, IEcsComponentRequest
         {
             world.GetPool<T>().TryAddOrGet(evt.Target.ID) = evt;

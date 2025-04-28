@@ -29,6 +29,11 @@ public class CollisionResolutionSystem : IEcsFixedRunOnEvent<CollisionsEvent>
     
     public void RunOnEvent(ref CollisionsEvent evt)
     {
+        if (evt.Source.IsNull)
+        {
+            
+        }
+        
         ref var collisions1 = ref evt;
         ref var transform1 = ref _transformPool.Get(collisions1.Source.ID);
         ref var velocity1 = ref _velocityPool.TryAddOrGet(collisions1.Source.ID);

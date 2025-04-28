@@ -85,6 +85,8 @@ namespace {namespaceName}
             if (buff.Flagged(BuffRange.Min)) stat.Min.ApplyEffect(effect);
             if (buff.Flagged(BuffRange.Max)) stat.Max.ApplyEffect(effect);
             if (buff.Flagged(BuffRange.Value)) stat.Value.ApplyEffect(effect);
+
+            stat.ToBounds();
         }}
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -93,6 +95,8 @@ namespace {namespaceName}
             if (buffRange.Flagged(BuffRange.Min)) stat.Min.ApplyBuffInstantly(buff);
             if (buffRange.Flagged(BuffRange.Max)) stat.Max.ApplyBuffInstantly(buff);
             if (buffRange.Flagged(BuffRange.Value)) stat.Value.ApplyBuffInstantly(buff);
+
+            stat.ToBounds();
         }}
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -101,6 +105,8 @@ namespace {namespaceName}
             if (buff.Flagged(BuffRange.Min)) stat.Min.RemoveEffect(effect);
             if (buff.Flagged(BuffRange.Max)) stat.Max.RemoveEffect(effect);
             if (buff.Flagged(BuffRange.Value)) stat.Value.RemoveEffect(effect);
+
+            stat.ToBounds();
         }}
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -109,6 +115,8 @@ namespace {namespaceName}
             if (buff.Flagged(BuffRange.Min)) stat.Min.RemoveEffect(name);
             if (buff.Flagged(BuffRange.Max)) stat.Max.RemoveEffect(name);
             if (buff.Flagged(BuffRange.Value)) stat.Value.RemoveEffect(name);
+
+            stat.ToBounds();
         }}
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -117,6 +125,8 @@ namespace {namespaceName}
             stat.Min.ClearEffects();
             stat.Max.ClearEffects();
             stat.Value.ClearEffects();
+
+            stat.ToBounds();
         }}
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -134,6 +144,8 @@ namespace {namespaceName}
             stat.Min.ActualizeEffects();
             stat.Max.ActualizeEffects();
             stat.Value.ActualizeEffects();
+
+            stat.ToBounds();
         }}
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

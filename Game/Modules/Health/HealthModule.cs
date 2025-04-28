@@ -1,4 +1,6 @@
-﻿namespace Game.Modules;
+﻿using Karpik.DragonECS;
+
+namespace Game.Modules;
 
 public class HealthModule : IEcsModule
 {
@@ -7,6 +9,8 @@ public class HealthModule : IEcsModule
         b
             .Add(new DealDamageEventSystem())
             .Add(new DealDamageSystem())
-            .Add(new DealDamageOnContactSystem());
+            .Add(new DealDamageOnContactSystem())
+            .AddCaller<DealDamageEvent>()
+            .AddCaller<DealDamageRequest>();
     }
 }

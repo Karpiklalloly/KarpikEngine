@@ -25,7 +25,6 @@ public class DealDamageOnContactSystem : IEcsFixedRunOnEvent<CollisionsEvent>
 
     public void RunOnEvent(ref CollisionsEvent evt)
     {
-        Console.WriteLine("DealDamageOnContactSystem");
         Process(evt.Source, evt.Target);
         Process(evt.Target, evt.Source);
     }

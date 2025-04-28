@@ -43,6 +43,10 @@
       "BaseValue": 200.0
     },
     {
+      "$Type": "Damage",
+      "BaseValue": 1.0
+    },
+    {
       "$Type": "Enemy"
     },
     {

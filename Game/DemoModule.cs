@@ -1,5 +1,6 @@
 ﻿using Game.Modules;
 using Karpik.DragonECS;
+using Karpik.StatAndAbilities;
 using KarpikEngineMono;
 using KarpikEngineMono.Modules;
 using KarpikEngineMono.Modules.EcsCore;
@@ -78,6 +79,12 @@ public class MySystem : IEcsInit, IEcsRun
         if (Input.IsPressed(Keys.F4))
         {
             Worlds.Instance.EventWorld.SendEvent(new KillEvent());
+        }
+        
+        if (Input.IsPressed(Keys.F5))
+        {
+            ref var health = ref Worlds.Instance.MetaWorld.GetPlayer().Player.Get<Health>();
+            health.ApplyBuffInstantly(new Buff(100, BuffType.Add), BuffRange.Value);
         }
     }
 }

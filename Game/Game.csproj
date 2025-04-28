@@ -13,6 +13,7 @@
         <DebugType>portable</DebugType>
         <Optimize>false</Optimize>
         <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+        <DefineConstants>DRAGONECS_STABILITY_MODE;DRAGONECS_DEEP_DEBUG</DefineConstants>
     </PropertyGroup>
 
 

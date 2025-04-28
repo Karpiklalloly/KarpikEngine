@@ -59,34 +59,22 @@ namespace DCFApixels.DragonECS
         private EcsWorld.PoolsMediator _mediator;
 
         #region Properites
-        public int Count
-        {
-            get { return _itemsCount; }
-        }
-        public int Capacity
-        {
-            get { return _items.Length; }
-        }
-        public int ComponentTypeID
-        {
-            get { return _componentTypeID; }
-        }
-        public Type ComponentType
-        {
-            get { return typeof(T); }
-        }
-        public EcsWorld World
-        {
-            get { return _source; }
-        }
-        public bool IsReadOnly
-        {
-            get { return false; }
-        }
+        public int Count => _itemsCount;
+
+        public int Capacity => _items.Length;
+
+        public int ComponentTypeID => _componentTypeID;
+
+        public Type ComponentType => typeof(T);
+
+        public EcsWorld World => _source;
+
+        public bool IsReadOnly => false;
+
         public ref T this[int index]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get { return ref Get(index); }
+            get => ref Get(index);
         }
         #endregion
 
@@ -126,7 +114,7 @@ namespace DCFApixels.DragonECS
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T Get(int entityID)
         {
-#if DEBUG // не нужен STAB_MODE
+#if DEBUG // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ STAB_MODE
             if (!Has(entityID)) { EcsPoolThrowHelper.ThrowNotHaveComponent<T>(entityID); }
 #endif
 #if !DRAGONECS_DISABLE_POOLS_EVENTS
@@ -137,7 +125,7 @@ namespace DCFApixels.DragonECS
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref readonly T Read(int entityID)
         {
-#if DEBUG // не нужен STAB_MODE
+#if DEBUG // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ STAB_MODE
             if (!Has(entityID)) { EcsPoolThrowHelper.ThrowNotHaveComponent<T>(entityID); }
 #endif
             return ref _items[_mapping[entityID]];
@@ -237,18 +225,22 @@ namespace DCFApixels.DragonECS
 #elif DRAGONECS_STABILITY_MODE
             if (_isLocked) { return; }
 #endif
-            _recycledItemsCount = 0; // спереди потому чтобы обнулялось, так как Del не обнуляет
+            _recycledItemsCount = 0; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ Del пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if (_itemsCount <= 0) { return; }
             _itemsCount = 0;
             var span = _source.Where(out SingleAspect<T> _);
             foreach (var entityID in span)
             {
                 ref int itemIndex = ref _mapping[entityID];
+                
                 DisableComponent(ref _items[itemIndex]);
                 itemIndex = 0;
                 _mediator.UnregisterComponent(entityID, _componentTypeID, _maskBit);
 #if !DRAGONECS_DISABLE_POOLS_EVENTS
                 _listeners.InvokeOnDel(entityID, _listenersCachedCount);
+                _mapping[entityID] = 0;
+#else
+                _mapping[entityID] = 0;
 #endif
             }
         }
