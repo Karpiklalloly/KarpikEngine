@@ -20,14 +20,12 @@ namespace Karpik.StatAndAbilities.Codegen
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
                 
 namespace {namespaceName}
 {{
     [Serializable]
     {accessibility} partial struct {name} : IRangeStat
     {{
-        [IgnoreDataMember]
         public float BaseValue
         {{
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -36,7 +34,6 @@ namespace {namespaceName}
             set => Value.BaseValue = value;
         }}
 
-        [IgnoreDataMember]
         public float ModifiedValue
         {{
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -149,15 +146,6 @@ namespace {namespaceName}
         }}
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float Value(ref this {name} stat) => stat.Value.BaseValue;
-        
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float Min(ref this {name} stat) => stat.Min.BaseValue;
-        
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float Max(ref this {name} stat) => stat.Max.BaseValue;
-        
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float ValueModified(ref this {name} stat) => stat.Value.ModifiedValue;
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -190,7 +178,7 @@ namespace {namespaceName}
         }}
     }}
 }}";
-            return ($"{name}.Stat.Extensions.g.cs", source);
+            return ($"{name}.RangeStat.Extensions.g.cs", source);
         }
     }
 }

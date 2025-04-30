@@ -14,6 +14,8 @@ public class GlobalForceApplicationSystem : IEcsFixedRun
     
     public void FixedRun()
     {
+        if (Time.IsPaused) return;
+        
         foreach (var e in _world.Where(out Aspect a))
         {
             ref var rigidBody = ref a.rigidBody.Get(e);

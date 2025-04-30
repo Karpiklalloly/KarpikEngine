@@ -47,9 +47,7 @@
     },
     {
       "$Type": "Health",
-      "Value": {
-        "BaseValue": 100.0
-      },
+      "Value": 100.0,
       "Min": {
         "BaseValue": 0.0
       },

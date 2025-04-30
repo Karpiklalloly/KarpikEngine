@@ -13,4 +13,10 @@ namespace Karpik.StatAndAbilities
     {
         public string Name = string.Empty;
     }
+    
+    [AttributeUsage(AttributeTargets.Struct)]
+    public class EzRangeStatAttribute : Attribute
+    {
+        public string Name = string.Empty;
+    }
 }

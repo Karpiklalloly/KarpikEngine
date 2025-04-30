@@ -63,6 +63,10 @@
     },
     {
       "$Type": "DealDamageOnContact"
+    },
+    {
+      "$Type": "Damage",
+      "BaseValue": 1
     }
   ]
 }

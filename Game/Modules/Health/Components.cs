@@ -3,7 +3,7 @@ using Karpik.StatAndAbilities;
 
 namespace Game.Modules;
 
-[RangeStat]
+[EzRangeStat]
 public partial struct Health { }
 
 [Stat]

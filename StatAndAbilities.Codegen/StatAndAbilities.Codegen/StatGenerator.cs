@@ -20,7 +20,6 @@ $@"using Karpik.StatAndAbilities;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
                 
 namespace {namespaceName}
 {{
@@ -28,13 +27,13 @@ namespace {namespaceName}
     {accessibility} partial struct {name} : IStat
     {{
         public float BaseValue;
-        [IgnoreDataMember]
         public float ModifiedValue
         {{
             get
             {{
                 if (IsDirty)
                 {{
+                    IsDirty = false;
                     this.ActualizeEffects();
                 }}
                 return _modifiedValue;
@@ -44,9 +43,7 @@ namespace {namespaceName}
                 _modifiedValue = value;
             }}
         }}
-        [IgnoreDataMember]
         public List<Effect> Effects;
-        [IgnoreDataMember]
         public bool IsDirty;        
 
         private float _modifiedValue;
@@ -67,12 +64,6 @@ namespace {namespaceName}
             }}
             Effects.Clear();
             Effects = null;
-        }}
-        
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {{
-            Init();
         }}
     }}
 }}";
@@ -176,6 +167,7 @@ namespace {namespaceName}
                 }}
             }}
             
+            stat.IsDirty = false;
             stat.ModifiedValue = stat.BaseValue;
             foreach (var buff in buffs)
             {{
@@ -184,7 +176,6 @@ namespace {namespaceName}
                     stat.ModifyValue(buff);
                 }}
             }}
-            stat.IsDirty = false;
         }}
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -224,7 +215,6 @@ namespace {namespaceName}
                 default:
                     throw new ArgumentOutOfRangeException();
             }}
-            stat.IsDirty = true;
         }}
     }}
 }}";

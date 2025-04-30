@@ -31,7 +31,7 @@ public class DrawPlayerHealthSystem : IEcsRun
             UI.Root.Add(_bar);
         }
         
-        _bar.Value = health.Value();
-        _bar.MaxValue = health.Max();
+        _bar.Value = health.Value;
+        _bar.MaxValue = health.Max.ModifiedValue;
     }
 }

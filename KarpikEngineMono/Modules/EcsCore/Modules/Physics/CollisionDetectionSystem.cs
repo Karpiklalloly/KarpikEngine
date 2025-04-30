@@ -69,6 +69,8 @@ public class CollisionDetectionSystem : IEcsFixedRun
     
     public void FixedRun()
     {
+        if (Time.IsPaused) return;
+        
         _grid.Clear();
         _testedPairs.Clear();
 

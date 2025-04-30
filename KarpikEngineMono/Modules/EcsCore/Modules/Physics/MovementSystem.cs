@@ -21,6 +21,8 @@ public class MovementSystem : IEcsFixedRun
     
     public void FixedRun()
     {
+        if (Time.IsPaused) return;
+        
         foreach (var e in _world.Where(out Aspect aspect))
         {
             ref var transform = ref aspect.transform.Get(e);

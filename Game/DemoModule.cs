@@ -36,7 +36,7 @@ public class MySystem : IEcsInit, IEcsRun
         {
             var health = Worlds.Instance.MetaWorld.GetPlayer().Player.Get<Health>();
             var pos = Worlds.Instance.MetaWorld.GetPlayer().Player.Get<Transform>().Position;
-            DebugGraphics.Text($"Player Health: {health.ModifiedValue} of {health.Max.ModifiedValue}");
+            DebugGraphics.Text($"Player Health: {health.Value} of {health.Max.ModifiedValue}");
             DebugGraphics.Text($"Player Position: {pos.X:F2}, {pos.Y:F2}");
         }
         DebugGraphics.End();
@@ -80,11 +80,11 @@ public class MySystem : IEcsInit, IEcsRun
         {
             Worlds.Instance.EventWorld.SendEvent(new KillEvent());
         }
-        
+
         if (Input.IsPressed(Keys.F5))
         {
             ref var health = ref Worlds.Instance.MetaWorld.GetPlayer().Player.Get<Health>();
-            health.ApplyBuffInstantly(new Buff(100, BuffType.Add), BuffRange.Value);
+            health.Value += health.Max.ModifiedValue;
         }
     }
 }

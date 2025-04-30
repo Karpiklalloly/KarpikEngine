@@ -8,5 +8,7 @@ namespace Karpik.StatAndAbilities
         public void DeInit();
     }
 
-    public interface IRangeStat : IStat;
+    public interface IRangeStat : IStat { }
+    
+    public interface IEzRangeStat : IStat { }
 }

@@ -87,7 +87,7 @@ public class TestCollision
         e.Add<Player>();
         e.Add<Health>() = new Health()
         {
-            BaseValue = 100,
+            Value = 100,
             Max = new DefaultStat()
             {
                 BaseValue = 100
@@ -123,7 +123,7 @@ public class TestCollision
         e.Add<FollowPlayer>();
         e.Add<Health>() = new Health()
         {
-            BaseValue = 100,
+            Value = 100,
             Max = new DefaultStat()
             {
                 BaseValue = 100
