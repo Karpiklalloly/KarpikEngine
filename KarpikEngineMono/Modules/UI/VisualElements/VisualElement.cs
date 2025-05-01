@@ -13,15 +13,24 @@ public class VisualElement
     public Rectangle OffsetRect { get; set; }
     public Anchor Anchor { get; set; } = Anchor.TopLeft;
     public Vector2 Pivot { get; set; } = new Vector2(0.5f, 0.5f);
-    public bool IsVisible { get; set; } = true;
-    public bool IsEnabled { get; set; } = true;
+
+    public bool IsVisible
+    {
+        get => _isVisible && (Parent == null || Parent.IsVisible);
+        set => _isVisible = value;
+    }
+
+    public bool IsEnabled
+    {
+        get => _isEnabled && (Parent == null || Parent.IsEnabled);
+        set => _isEnabled = value;
+    }
     public bool IsHovered { get; private set; }
     public int Order { get; set; } = 0;
     public string Name { get; set; } = string.Empty;
-
-    internal bool NeedRedraw => _needRedraw || Children.Any(x => x.NeedRedraw);
     
-    private bool _needRedraw = true;
+    private bool _isVisible = true;
+    private bool _isEnabled = true;
     private HashSet<string> _tags = new();
 
     public VisualElement(Rectangle offsetRect)
@@ -82,8 +91,8 @@ public class VisualElement
             var anchorMaxPos = new Vector2(parentBounds.X + parentBounds.Width * Anchor.Max.X,
                 parentBounds.Y + parentBounds.Height * Anchor.Max.Y);
 
-            int left = (int)(anchorMinPos.X + OffsetRect.X);
-            int top = (int)(anchorMinPos.Y + OffsetRect.Y);
+            int left = (int)(anchorMinPos.X + OffsetRect.X - OffsetRect.Width / 2f);
+            int top = (int)(anchorMinPos.Y + OffsetRect.Y - OffsetRect.Height / 2f);
             int right;
             int bottom;
             
@@ -106,10 +115,6 @@ public class VisualElement
             }
             
             Bounds = new Rectangle(left, top, right - left, bottom - top);
-        }
-        foreach (var child in Children)
-        {
-            child.UpdateLayout();
         }
     }
 
@@ -136,10 +141,9 @@ public class VisualElement
         if (!IsVisible) return;
         //TODO: Добавить редрав только если нужно
         //if (!_needRedraw) return;
-        
-        DrawSelf(spriteBatch);
 
-        _needRedraw = false;
+        UpdateLayout();
+        DrawSelf(spriteBatch);
     }
     
     protected virtual void HandleInput() { }
@@ -150,6 +154,6 @@ public class VisualElement
     
     protected void Invalidate()
     {
-        _needRedraw = true;
+        
     }
 }

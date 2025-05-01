@@ -76,6 +76,7 @@ public struct ColliderCircle : IEcsComponent
     public bool IsTrigger;
 }
 
+[AllowedInWorlds(typeof(EcsEventWorld), nameof(EcsEventWorld))]
 public struct CollisionsEvent : IEcsComponentEvent
 {
     public entlong Source { get; set; }

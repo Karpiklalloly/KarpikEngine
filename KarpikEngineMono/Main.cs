@@ -34,6 +34,7 @@ public class Main : Game
 
         Loader.Manager = Content;
         EcsDebug.OnPrint = Console.WriteLine;
+        UI.Window = Window;
     }
 
     public Main Add(IEcsModule module)
@@ -58,6 +59,7 @@ public class Main : Game
     protected override void BeginRun()
     {
         _pipeline = _builder.BuildAndInit();
+        _pipeline.GetRunner<GameInit>().InitGame();
         _stopWatch.Start();
         base.BeginRun();
     }

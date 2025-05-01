@@ -24,7 +24,7 @@ using System.Runtime.Serialization;
                 
 namespace {namespaceName}
 {{
-    [Serializable]
+    [Serializable][AllowedInWorlds(typeof(EcsDefaultWorld), nameof(EcsDefaultWorld))]
     {accessibility} partial struct {name} : IRangeStat
     {{
         [IgnoreDataMember]

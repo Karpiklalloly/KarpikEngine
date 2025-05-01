@@ -15,6 +15,7 @@ public struct DealDamageRequest : IEcsComponentRequest
     public double Damage { get; set; }
 }
 
+[AllowedInWorlds(typeof(EcsEventWorld), nameof(EcsEventWorld))]
 public struct DealDamageEvent : IEcsComponentEvent
 {
     public entlong Source { get; set; }
@@ -22,6 +23,7 @@ public struct DealDamageEvent : IEcsComponentEvent
     public double Damage { get; set; }
 }
 
+[AllowedInWorlds(typeof(EcsEventWorld), nameof(EcsEventWorld))]
 public struct KillEvent : IEcsComponentEvent
 {
     public entlong Source { get; set; }

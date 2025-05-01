@@ -23,7 +23,7 @@ using System.Runtime.CompilerServices;
                 
 namespace {namespaceName}
 {{
-    [Serializable]
+    [Serializable][AllowedInWorlds(typeof(EcsDefaultWorld), nameof(EcsDefaultWorld))]
     {accessibility} partial struct {name} : IEzRangeStat
     {{
         public float Value

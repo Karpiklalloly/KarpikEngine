@@ -2,14 +2,14 @@
 
 public static class VisualElementExtensions
 {
-    public static VisualElement Q<T>(this VisualElement element)
+    public static T Q<T>(this VisualElement element) where T : VisualElement
     {
-        return element.Children.First(x => x.GetType() == typeof(T));
+        return (T)element.Children.First(x => x.GetType() == typeof(T));
     }
     
-    public static VisualElement Q<T>(this VisualElement element, string name)
+    public static T Q<T>(this VisualElement element, string name) where T : VisualElement
     {
-        return element.Children.First(x =>
+        return (T)element.Children.First(x =>
         {
             if (x.Name != name) return false;
             if (x.GetType() != typeof(T)) return false;
@@ -18,12 +18,12 @@ public static class VisualElementExtensions
         });
     }
     
-    public static IEnumerable<VisualElement> Qs<T>(this VisualElement element)
+    public static IEnumerable<T> Qs<T>(this VisualElement element) where T : VisualElement
     {
-        return element.Children.Where(x => x.GetType() == typeof(T));
+        return element.Children.Where(x => x.GetType() == typeof(T)).Cast<T>();
     }
     
-    public static IEnumerable<VisualElement> Qs<T>(this VisualElement element, string name)
+    public static IEnumerable<T> Qs<T>(this VisualElement element, string name) where T : VisualElement
     {
         return element.Children.Where(x =>
         {
@@ -31,17 +31,17 @@ public static class VisualElementExtensions
             if (x.GetType() != typeof(T)) return false;
             
             return true;
-        });
+        }).Cast<T>();
     }
     
-    public static VisualElement DeepQ<T>(this VisualElement element)
+    public static T DeepQ<T>(this VisualElement element) where T : VisualElement
     {
-        return element.AllChildren.First(x => x.GetType() == typeof(T));
+        return (T)element.AllChildren.First(x => x.GetType() == typeof(T));
     }
     
-    public static VisualElement DeepQ<T>(this VisualElement element, string name)
+    public static T DeepQ<T>(this VisualElement element, string name) where T : VisualElement
     {
-        return element.AllChildren.First(x =>
+        return (T)element.AllChildren.First(x =>
         {
             if (x.Name != name) return false;
             if (x.GetType() != typeof(T)) return false;
@@ -50,12 +50,12 @@ public static class VisualElementExtensions
         });
     }
     
-    public static IEnumerable<VisualElement> DeepQs<T>(this VisualElement element)
+    public static IEnumerable<T> DeepQs<T>(this VisualElement element) where T : VisualElement
     {
-        return element.AllChildren.Where(x => x.GetType() == typeof(T));
+        return element.AllChildren.Where(x => x.GetType() == typeof(T)).Cast<T>();
     }
     
-    public static IEnumerable<VisualElement> DeepQs<T>(this VisualElement element, string name)
+    public static IEnumerable<T> DeepQs<T>(this VisualElement element, string name) where T : VisualElement
     {
         return element.AllChildren.Where(x =>
         {
@@ -63,6 +63,6 @@ public static class VisualElementExtensions
             if (x.GetType() != typeof(T)) return false;
             
             return true;
-        });
+        }).Cast<T>();
     }
 }

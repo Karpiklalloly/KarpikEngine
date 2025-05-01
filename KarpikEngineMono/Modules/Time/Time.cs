@@ -10,6 +10,6 @@ public static class Time
     public static void Update(double deltaTime)
     {
         DeltaTime = deltaTime;
-        TotalTime += deltaTime;
+        if (!IsPaused) TotalTime += deltaTime;
     }
 }
