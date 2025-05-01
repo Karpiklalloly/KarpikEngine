@@ -18,7 +18,7 @@ public class Button : VisualElement
 
     private bool _isPressed;
     
-    public Button(Rectangle bounds, string text, SpriteFont font) : base(bounds)
+    public Button(Rectangle offsetRect, string text, SpriteFont font) : base(offsetRect)
     {
         Text = text;
         Font = font;
@@ -73,7 +73,7 @@ public class Button : VisualElement
             currentBgColor = HoverColor;
         }
 
-        var uiBounds = UIBounds;
+        var uiBounds = Bounds;
         // Рисуем фон (текстурой или цветом)
         if (BackgroundTexture != null)
         {

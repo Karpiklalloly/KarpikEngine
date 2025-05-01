@@ -178,7 +178,7 @@ public class InputField : VisualElement
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
-        var uiBounds = UIBounds;
+        var uiBounds = Bounds;
         Color currentBgColor = IsFocused ? FocusedBackgroundColor : BackgroundColor;
         Texture2D pixel = Button.GetPixelTexture(spriteBatch.GraphicsDevice); // Используем тот же пиксель
         spriteBatch.Draw(pixel, uiBounds, currentBgColor);

@@ -20,6 +20,7 @@ $@"using Karpik.StatAndAbilities;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
                 
 namespace {namespaceName}
 {{
@@ -27,6 +28,7 @@ namespace {namespaceName}
     {accessibility} partial struct {name} : IStat
     {{
         public float BaseValue;
+        [IgnoreDataMember]
         public float ModifiedValue
         {{
             get
@@ -43,7 +45,9 @@ namespace {namespaceName}
                 _modifiedValue = value;
             }}
         }}
+        [IgnoreDataMember]
         public List<Effect> Effects;
+        [IgnoreDataMember]
         public bool IsDirty;        
 
         private float _modifiedValue;
@@ -64,6 +68,11 @@ namespace {namespaceName}
             }}
             Effects.Clear();
             Effects = null;
+        }}
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {{
+            Init();
         }}
     }}
 }}";

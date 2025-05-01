@@ -14,7 +14,7 @@ public class ProgressBar : VisualElement
         get => _maxValue;
         set
         {
-            if (value <= 0) throw new ArgumentOutOfRangeException(nameof(value), "MaxValue must be positive.");
+            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value), "MaxValue must be positive.");
             _maxValue = value;
             // Пересчитываем значение, чтобы оно осталось в пределах нового максимума
             Value = _value; // Используем сеттер Value для проверки

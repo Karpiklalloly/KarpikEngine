@@ -20,12 +20,14 @@ namespace Karpik.StatAndAbilities.Codegen
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
                 
 namespace {namespaceName}
 {{
     [Serializable]
     {accessibility} partial struct {name} : IRangeStat
     {{
+        [IgnoreDataMember]
         public float BaseValue
         {{
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -34,6 +36,7 @@ namespace {namespaceName}
             set => Value.BaseValue = value;
         }}
 
+        [IgnoreDataMember]
         public float ModifiedValue
         {{
             [MethodImpl(MethodImplOptions.AggressiveInlining)]

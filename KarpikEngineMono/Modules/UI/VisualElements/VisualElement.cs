@@ -9,7 +9,10 @@ public class VisualElement
     public List<VisualElement> Children { get; private set; } = [];
     internal IEnumerable<VisualElement> AllChildren => Children.Concat(Children.SelectMany(x => x.AllChildren));
     
-    public Rectangle Bounds { get; set; }
+    public Rectangle Bounds { get; protected set; }
+    public Rectangle OffsetRect { get; set; }
+    public Anchor Anchor { get; set; } = Anchor.TopLeft;
+    public Vector2 Pivot { get; set; } = new Vector2(0.5f, 0.5f);
     public bool IsVisible { get; set; } = true;
     public bool IsEnabled { get; set; } = true;
     public bool IsHovered { get; private set; }
@@ -17,17 +20,13 @@ public class VisualElement
     public string Name { get; set; } = string.Empty;
 
     internal bool NeedRedraw => _needRedraw || Children.Any(x => x.NeedRedraw);
-
-    public Vector2 UIPosition =>
-        Parent != null ? Parent.UIPosition + Bounds.Location.ToVector2() : Bounds.Location.ToVector2();
-    public Rectangle UIBounds => new(UIPosition.ToPoint(), Bounds.Size);
     
     private bool _needRedraw = true;
     private HashSet<string> _tags = new();
 
-    public VisualElement(Rectangle bounds)
+    public VisualElement(Rectangle offsetRect)
     {
-        Bounds = bounds;
+        OffsetRect = offsetRect;
     }
     
     public void Add(VisualElement child)
@@ -37,6 +36,7 @@ public class VisualElement
             child.Parent?.Remove(child);
             child.Parent = this;
             Children.Add(child);
+            child.UpdateLayout();
         }
     }
 
@@ -68,9 +68,56 @@ public class VisualElement
         return _tags.Contains(tag);
     }
 
+    public virtual void UpdateLayout()
+    {
+        if (Parent == null)
+        {
+            Bounds = OffsetRect;
+        }
+        else
+        {
+            var parentBounds = Parent.Bounds;
+            var anchorMinPos = new Vector2(parentBounds.X + parentBounds.Width * Anchor.Min.X,
+                parentBounds.Y + parentBounds.Height * Anchor.Min.Y);
+            var anchorMaxPos = new Vector2(parentBounds.X + parentBounds.Width * Anchor.Max.X,
+                parentBounds.Y + parentBounds.Height * Anchor.Max.Y);
+
+            int left = (int)(anchorMinPos.X + OffsetRect.X);
+            int top = (int)(anchorMinPos.Y + OffsetRect.Y);
+            int right;
+            int bottom;
+            
+            if (Math.Abs(Anchor.Min.X - Anchor.Max.X) < float.Epsilon)
+            {
+                right = left + OffsetRect.Width;
+            }
+            else
+            {
+                right = (int)(anchorMaxPos.X - OffsetRect.Width);
+            }
+            
+            if (Math.Abs(Anchor.Min.Y - Anchor.Max.Y) < float.Epsilon)
+            {
+                bottom = top + OffsetRect.Height;
+            }
+            else
+            {
+                bottom = (int)(anchorMaxPos.Y - OffsetRect.Height);
+            }
+            
+            Bounds = new Rectangle(left, top, right - left, bottom - top);
+        }
+        foreach (var child in Children)
+        {
+            child.UpdateLayout();
+        }
+    }
+
     internal void Update(double deltaTime)
     {
         if (!IsVisible) return;
+        
+        UpdateLayout();
 
         var mousePosition = Input.MousePosition;
         IsHovered = Bounds.Contains(mousePosition);

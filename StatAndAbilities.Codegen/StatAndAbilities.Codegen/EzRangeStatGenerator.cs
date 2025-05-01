@@ -29,7 +29,7 @@ namespace {namespaceName}
         public float Value
         {{
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => Stat.BaseValue;
+            get => _value;
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set
             {{
@@ -41,24 +41,22 @@ namespace {namespaceName}
                 {{
                     value = Max.ModifiedValue;
                 }}
-                Stat.BaseValue = value;
+                _value = value;
             }}
         }}
 
-        private DefaultStat Stat;
+        private float _value;
         public DefaultStat Min;
         public DefaultStat Max;
         
         public void Init()
         {{
-            Stat.Init();
             Min.Init();
             Max.Init();
         }}
         
         public void DeInit()
         {{
-            Stat.DeInit();
             Min.DeInit();
             Max.DeInit();
         }}

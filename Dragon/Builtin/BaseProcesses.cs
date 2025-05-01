@@ -143,22 +143,23 @@ namespace DCFApixels.DragonECS.Internal
             {
                 var pair = _pairs[i];
                 _markers[i].Begin();
-                try
-                {
-                    pair.run.Run();
-                }
-                catch (Exception e)
-                {
-#if DRAGONECS_DISABLE_CATH_EXCEPTIONS
-                    throw e;
-#else
-                    EcsDebug.PrintError(e);
-#endif
-                }
-                finally
-                {
-                    pair.cleanup?.RunFinally();
-                }
+                pair.run.Run();
+//                 try
+//                 {
+//                     pair.run.Run();
+//                 }
+//                 catch (Exception e)
+//                 {
+// #if DRAGONECS_DISABLE_CATH_EXCEPTIONS
+//                     throw e;
+// #else
+//                     EcsDebug.PrintError(e);
+// #endif
+//                 }
+//                 finally
+//                 {
+//                     pair.cleanup?.RunFinally();
+//                 }
                 _markers[i].End();
             }
 #else
