@@ -61,7 +61,7 @@ public class CollisionResolutionSystem : IEcsFixedRunOnEvent<CollisionsEvent>
                 continue;
             }
                 
-            _collisions.TryAddOrGet(entityB);
+            _rigidBodyPool.TryAddOrGet(entityB);
             _transformPool.TryAddOrGet(entityB);
             _velocityPool.TryAddOrGet(entityB);
 

@@ -9,19 +9,19 @@ namespace KarpikEngineMono.Modules.EcsCore
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ref T Get<T>(this entlong entity) where T : struct, IEcsComponent
         {
-            return ref Worlds.Instance.World.GetPool<T>().Get(entity.ID);
+            return ref entity.World.GetPool<T>().Get(entity.ID);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ref T Add<T>(this entlong entity) where T : struct, IEcsComponent
         {
-            return ref Worlds.Instance.World.GetPool<T>().Add(entity.ID);
+            return ref entity.World.GetPool<T>().Add(entity.ID);
         }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Has<T>(this entlong entity) where T : struct, IEcsComponent
         {
-            return Worlds.Instance.World.GetPool<T>().Has(entity.ID);
+            return entity.World.GetPool<T>().Has(entity.ID);
         }
     }
 
@@ -30,13 +30,13 @@ namespace KarpikEngineMono.Modules.EcsCore
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Add<T>(this entlong entity) where T : struct, IEcsTagComponent
         {
-            Worlds.Instance.World.GetPool<T>().Add(entity.ID);
+            entity.World.GetPool<T>().Add(entity.ID);
         }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Has<T>(this entlong entity) where T : struct, IEcsTagComponent
         {
-            return Worlds.Instance.World.GetPool<T>().Has(entity.ID);
+            return entity.World.GetPool<T>().Has(entity.ID);
         }
     }
 }

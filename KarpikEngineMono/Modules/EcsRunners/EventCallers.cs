@@ -404,33 +404,12 @@ namespace Karpik.DragonECS
         public entlong Target { get; set; }
     }
 
-    internal class ColAspect : EcsAspect
-    {
-        public EcsPool<CollisionsEvent> evt = Inc;
-    }
-
     public static class EventCallersWorldExtensions
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SendEvent<T>(this EcsEventWorld world, T evt) where T : struct, IEcsComponentEvent
         {
-            var entities = world.Where(out ColAspect a);
-            var pool = world.GetPool<CollisionsEvent>();
-            var count = pool.Count;
-            if (entities.Count != count)
-            {
-                
-            }
-
-            var entity = world.NewEntityLong();
-            var has1 = entity.Has<CollisionsEvent>();
-            var has2 = world.GetPool<T>().Has(entity.ID);
-            if (has1 || has2)
-            {
-                world.DelEntity(entity);
-                entity = world.NewEntityLong();
-            }
-            world.GetPool<T>().Add(entity.ID) = evt;
+            world.GetPool<T>().Add(world.NewEntity()) = evt;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
