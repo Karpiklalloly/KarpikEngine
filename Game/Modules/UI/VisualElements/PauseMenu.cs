@@ -7,7 +7,7 @@ namespace Game.Modules;
 public class PauseMenu : VisualElement
 {
     private readonly Button _resumeButton;
-    private readonly InputField _inputField;
+    private readonly Label _title;
 
     public PauseMenu(Vector2 size) : base(size)
     {
@@ -15,13 +15,13 @@ public class PauseMenu : VisualElement
         _resumeButton.Clicked += OnResumeClicked;
         _resumeButton.Anchor = Anchor.Center;
         
-        _inputField = new InputField(new Vector2(600, 100), UI.DefaultFont, UI.Window);
-        _inputField.OffsetPosition = new Vector2(0, 60);
-        _inputField.Anchor = Anchor.TopCenter;
-        _inputField.Stretch = StretchMode.Horizontal;
+        _title = new Label("My game");
+        _title.OffsetPosition = new Vector2(0, 60);
+        _title.Anchor = Anchor.TopCenter;
+        _title.Stretch = StretchMode.Horizontal;
         
         Add(_resumeButton);
-        Add(_inputField);
+        Add(_title);
     }
 
     private void OnResumeClicked()
@@ -29,9 +29,14 @@ public class PauseMenu : VisualElement
         Time.IsPaused = false;
         Close();
     }
+    
+    public void Open()
+    {
+        IsVisible = IsEnabled = true;
+    }
 
     public void Close()
     {
-        _inputField.Text = string.Empty;
+        IsVisible = IsEnabled = false;
     }
 }

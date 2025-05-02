@@ -22,9 +22,11 @@ public class OpenMenuOnPauseSystem : IEcsGameInit, IEcsRun
     {
         if (Time.IsPaused)
         {
-            
+            _menu.Open();
         }
-        _menu.IsVisible = Time.IsPaused;
-        _menu.IsEnabled = Time.IsPaused;
+        else
+        {
+            _menu.Close();
+        }
     }
 }

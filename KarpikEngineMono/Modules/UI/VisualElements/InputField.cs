@@ -200,7 +200,9 @@ public class InputField : VisualElement
         // Простая отрисовка без скроллинга/клиппинга
         // TODO: Добавить клиппинг текста, если он выходит за Bounds
         var scale = (float)90 / Font.LineSpacing;
-        Vector2 textPosition = new Vector2(uiBounds.X + 5, uiBounds.Y + (uiBounds.Height - Font.MeasureString(" ").Y * scale) / 2); // Небольшой отступ слева
+        Vector2 textPosition = new Vector2(
+            uiBounds.X + 5,
+            uiBounds.Y + (uiBounds.Height - Font.MeasureString(" ").Y * scale) / 2); // Небольшой отступ слева
         spriteBatch.DrawString(Font, _textBuilder.ToString(), textPosition, TextColor, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
 
         // Рисуем курсор (мигающий)
