@@ -7,7 +7,18 @@ namespace KarpikEngineMono.Modules.VisualElements;
 
 public class InputField : VisualElement
 {
-    public string Text { get; private set; } = "";
+    public string Text
+    {
+        get => _currentText;
+        set
+        {
+            _textBuilder.Clear();
+            _textBuilder.Append(value);
+            _currentText = value;
+            _caretPosition = value.Length; // Устанавливаем курсор в конец текста
+            Invalidate();
+        }
+    }
     public SpriteFont Font { get; set; }
     public Color TextColor { get; set; } = Color.Black;
     public Color BackgroundColor { get; set; } = Color.White;
@@ -20,7 +31,8 @@ public class InputField : VisualElement
     
     public bool IsFocused { get; private set; } = false;
 
-    private StringBuilder _textBuilder;
+    private StringBuilder _textBuilder = new StringBuilder();
+    private string _currentText = "";
     private int _caretPosition = 0; // Позиция курсора
     private double _caretTimer = 0f; // Таймер для мигания
     private const float CaretBlinkRate = 0.5f; // Секунд на мигание
@@ -28,10 +40,9 @@ public class InputField : VisualElement
     // Статическое поле для отслеживания фокуса (только одно поле может быть в фокусе)
     private static InputField _currentlyFocusedField = null;
     
-    public InputField(Rectangle bounds, SpriteFont font, GameWindow window) : base(bounds)
+    public InputField(Vector2 size, SpriteFont font, GameWindow window) : base(size)
     {
         Font = font;
-        _textBuilder = new StringBuilder();
 
         // --- Подписка на событие ввода текста ---
         window.TextInput += HandleTextInput;

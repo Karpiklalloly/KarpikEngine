@@ -11,13 +11,19 @@ public class OpenMenuOnPauseSystem : IEcsGameInit, IEcsRun
     
     public void InitGame()
     {
-        _menu = new PauseMenu(new Rectangle(0, 0, 0, 0));
+        _menu = new PauseMenu(Vector2.Zero);
+        _menu.Pivot = Vector2.Zero;
         _menu.Anchor = Anchor.StretchAll;
+        _menu.Stretch = StretchMode.Both;
         UI.Root.Add(_menu);
     }
     
     public void Run()
     {
+        if (Time.IsPaused)
+        {
+            
+        }
         _menu.IsVisible = Time.IsPaused;
         _menu.IsEnabled = Time.IsPaused;
     }

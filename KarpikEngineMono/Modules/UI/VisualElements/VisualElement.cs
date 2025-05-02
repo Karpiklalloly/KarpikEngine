@@ -8,10 +8,15 @@ public class VisualElement
     public VisualElement Parent { get; private set; }
     public List<VisualElement> Children { get; private set; } = [];
     internal IEnumerable<VisualElement> AllChildren => Children.Concat(Children.SelectMany(x => x.AllChildren));
+
     
     public Rectangle Bounds { get; protected set; }
-    public Rectangle OffsetRect { get; set; }
+    public Vector2 Size { get; set; }
+    public Vector2 MinSize { get; set; } = Vector2.Zero;
+    public Vector2 MaxSize { get; set; } = new(float.MaxValue, float.MaxValue);
     public Anchor Anchor { get; set; } = Anchor.TopLeft;
+    public StretchMode Stretch { get; set; } = StretchMode.None;
+    public Vector2 OffsetPosition { get; set; } = Vector2.Zero;
     public Vector2 Pivot { get; set; } = new Vector2(0.5f, 0.5f);
 
     public bool IsVisible
@@ -33,9 +38,9 @@ public class VisualElement
     private bool _isEnabled = true;
     private HashSet<string> _tags = new();
 
-    public VisualElement(Rectangle offsetRect)
+    public VisualElement(Vector2 size)
     {
-        OffsetRect = offsetRect;
+        Size = size;
     }
     
     public void Add(VisualElement child)
@@ -79,43 +84,67 @@ public class VisualElement
 
     public virtual void UpdateLayout()
     {
+        Vector2 finalSize;
+        Vector2 finalPosition;
+
         if (Parent == null)
         {
-            Bounds = OffsetRect;
+            finalSize = Vector2.Clamp(Size, MinSize, MaxSize);
+            finalPosition = OffsetPosition - finalSize * Pivot;
         }
         else
         {
-            var parentBounds = Parent.Bounds;
-            var anchorMinPos = new Vector2(parentBounds.X + parentBounds.Width * Anchor.Min.X,
-                parentBounds.Y + parentBounds.Height * Anchor.Min.Y);
-            var anchorMaxPos = new Vector2(parentBounds.X + parentBounds.Width * Anchor.Max.X,
-                parentBounds.Y + parentBounds.Height * Anchor.Max.Y);
+            Rectangle parentBounds = Parent.Bounds;
 
-            int left = (int)(anchorMinPos.X + OffsetRect.X - OffsetRect.Width / 2f);
-            int top = (int)(anchorMinPos.Y + OffsetRect.Y - OffsetRect.Height / 2f);
-            int right;
-            int bottom;
-            
-            if (Math.Abs(Anchor.Min.X - Anchor.Max.X) < float.Epsilon)
+            // 1. Определяем размер элемента
+            Vector2 availableSpace = new Vector2(
+                parentBounds.Width * (Anchor.Max.X - Anchor.Min.X),
+                parentBounds.Height * (Anchor.Max.Y - Anchor.Min.Y)
+            );
+
+            // Горизонтальный размер
+            if (Anchor.StretchesHorizontally && (Stretch & StretchMode.Horizontal) != 0)
             {
-                right = left + OffsetRect.Width;
+                // Растягиваем: доступное пространство минус горизонтальные смещения (теперь OffsetPosition - это смещение центра)
+                // Это сложнее, так как OffsetPosition влияет на центр, а не края.
+                // Упрощенный вариант: растягиваем до доступного пространства
+                finalSize.X = availableSpace.X;
+                // TODO: Более точный расчет с учетом OffsetPosition и Pivot для растягивания
             }
             else
             {
-                right = (int)(anchorMaxPos.X - OffsetRect.Width);
+                finalSize.X = Size.X; // Используем заданный размер
             }
-            
-            if (Math.Abs(Anchor.Min.Y - Anchor.Max.Y) < float.Epsilon)
+
+            // Вертикальный размер
+            if (Anchor.StretchesVertically && (Stretch & StretchMode.Vertical) != 0)
             {
-                bottom = top + OffsetRect.Height;
+                finalSize.Y = availableSpace.Y;
+                // TODO: Более точный расчет растягивания по вертикали
             }
             else
             {
-                bottom = (int)(anchorMaxPos.Y - OffsetRect.Height);
+                finalSize.Y = Size.Y;
             }
-            
-            Bounds = new Rectangle(left, top, right - left, bottom - top);
+
+            // Ограничиваем размер Min/Max значениями
+            finalSize = Vector2.Clamp(finalSize, MinSize, MaxSize);
+
+            // 2. Определяем позицию точки якоря на родителе (используем Min якорь как базу)
+            Vector2 anchorPoint = new Vector2(
+                parentBounds.X + parentBounds.Width * Anchor.Min.X,
+                parentBounds.Y + parentBounds.Height * Anchor.Min.Y
+            );
+
+            // 3. Рассчитываем позицию центра элемента
+            Vector2 elementCenter = anchorPoint + OffsetPosition;
+
+            // 4. Рассчитываем позицию верхнего левого угла (для Bounds)
+            finalPosition = elementCenter - finalSize * Pivot;
         }
+
+        // Устанавливаем финальные Bounds
+        Bounds = new Rectangle((int)finalPosition.X, (int)finalPosition.Y, (int)finalSize.X, (int)finalSize.Y);
     }
 
     internal void Update(double deltaTime)

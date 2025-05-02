@@ -24,10 +24,14 @@ public class DrawPlayerHealthSystem : IEcsRun
         var health = a.health.Get(entities[0]);
         if (_bar == null)
         {
-            _bar = new ProgressBar(new Rectangle(new Point(10, 10), new Point(300, 20)));
-            _bar.Font = UI.DefaultFont;
-            _bar.ForegroundColor = Color.Red;
-            _bar.BackgroundColor = Color.Black;
+            _bar = new ProgressBar(new Vector2(300, 20))
+            {
+                Pivot = Vector2.Zero,
+                OffsetPosition = new Vector2(10, 10),
+                Font = UI.DefaultFont,
+                ForegroundColor = Color.Red,
+                BackgroundColor = Color.Black
+            };
             UI.Root.Add(_bar);
         }
         

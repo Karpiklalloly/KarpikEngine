@@ -18,7 +18,7 @@ public class Button : VisualElement
 
     private bool _isPressed;
     
-    public Button(Rectangle offsetRect, string text, SpriteFont font) : base(offsetRect)
+    public Button(Vector2 size, string text, SpriteFont font) : base(size)
     {
         Text = text;
         Font = font;

@@ -6,23 +6,32 @@ namespace Game.Modules;
 
 public class PauseMenu : VisualElement
 {
-    public PauseMenu(Rectangle bounds) : base(bounds)
+    private readonly Button _resumeButton;
+    private readonly InputField _inputField;
+
+    public PauseMenu(Vector2 size) : base(size)
     {
-        var resumeButton = new Button(new Rectangle(0, 0, 600, 200), "Resume", UI.DefaultFont);
-        resumeButton.Clicked += OnResumeClicked;
-        resumeButton.Anchor = Anchor.Center;
+        _resumeButton = new Button(new Vector2(600, 200), "Resume", UI.DefaultFont);
+        _resumeButton.Clicked += OnResumeClicked;
+        _resumeButton.Anchor = Anchor.Center;
         
-        var inputField = new InputField(new Rectangle(0, 60, 600, 100), UI.DefaultFont, UI.Window);
-        inputField.Anchor = Anchor.TopCenter;
+        _inputField = new InputField(new Vector2(600, 100), UI.DefaultFont, UI.Window);
+        _inputField.OffsetPosition = new Vector2(0, 60);
+        _inputField.Anchor = Anchor.TopCenter;
+        _inputField.Stretch = StretchMode.Horizontal;
         
-        Anchor = Anchor.Center;
-        Add(resumeButton);
-        Add(inputField);
+        Add(_resumeButton);
+        Add(_inputField);
     }
 
     private void OnResumeClicked()
     {
         Time.IsPaused = false;
-        Console.WriteLine(this.Q<InputField>().Text);
+        Close();
+    }
+
+    public void Close()
+    {
+        _inputField.Text = string.Empty;
     }
 }

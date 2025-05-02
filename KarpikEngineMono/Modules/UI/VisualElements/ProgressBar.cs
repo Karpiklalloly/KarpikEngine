@@ -49,7 +49,7 @@ public class ProgressBar : VisualElement
     public string TextFormat { get; set; } = "{0:0}%"; // Формат для string.Format (0 - значение 0-100)
 
     // --- Конструктор ---
-    public ProgressBar(Rectangle bounds) : base(bounds)
+    public ProgressBar(Vector2 size) : base(size)
     {
         // ProgressBar обычно не интерактивен
         IsEnabled = false;

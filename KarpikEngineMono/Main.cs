@@ -51,7 +51,13 @@ public class Main : Game
         InitEcs();
         Worlds.Instance.Pipeline = _pipeline;
 
-        UI.Root = new VisualElement(new Rectangle(Point.Zero, Window.ClientBounds.Size));
+        UI.Root = new VisualElement(Window.ClientBounds.Size.ToVector2())
+        {
+            OffsetPosition = Vector2.Zero,
+            Anchor = Anchor.TopLeft,
+            Stretch = StretchMode.Both,
+            Pivot = Vector2.Zero
+        };
         UI.DefaultFont = Loader.Load<SpriteFont>("DefaultFont");
         base.Initialize();
     }

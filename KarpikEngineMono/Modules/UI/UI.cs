@@ -14,7 +14,7 @@ public static class UI
 
     internal static void Update()
     {
-        Root.OffsetRect = Window.ClientBounds with {X = 0, Y = 0};
+        Root.Size = Window.ClientBounds.Size.ToVector2();
         Root.Update(Time.DeltaTime);
     }
 

@@ -20,6 +20,7 @@ namespace Karpik.StatAndAbilities.Codegen
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using DCFApixels.DragonECS;
                 
 namespace {namespaceName}
 {{
