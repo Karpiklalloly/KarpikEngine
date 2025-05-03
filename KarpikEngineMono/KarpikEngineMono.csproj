@@ -44,6 +44,7 @@
     <ProjectReference Include="..\StatAndAbilities\StatAndAbilities.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Modules\Time\Tween\" />
     <Folder Include="ThirdParty\DragonECS\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">

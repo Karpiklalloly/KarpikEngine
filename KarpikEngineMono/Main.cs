@@ -122,6 +122,7 @@ public class Main : Game
             .AddRunner<GameInit>()
             .AddModule(new VisualModule())
             .AddModule(new InputModule())
-            .AddModule(new PhysicsModule());
+            .AddModule(new PhysicsModule())
+            .AddModule(new TimeModule());
     }
 }

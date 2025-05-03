@@ -23,6 +23,12 @@ namespace KarpikEngineMono.Modules.EcsCore
         {
             return entity.World.GetPool<T>().Has(entity.ID);
         }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Del<T>(this entlong entity) where T : struct, IEcsComponent
+        {
+            entity.World.GetPool<T>().Del(entity.ID);
+        }
     }
 
     public static class CoreComponentExtensionsTag
@@ -37,6 +43,12 @@ namespace KarpikEngineMono.Modules.EcsCore
         public static bool Has<T>(this entlong entity) where T : struct, IEcsTagComponent
         {
             return entity.World.GetPool<T>().Has(entity.ID);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Del<T>(this entlong entity) where T : struct, IEcsTagComponent
+        {
+            entity.World.GetPool<T>().Del(entity.ID);
         }
     }
 }

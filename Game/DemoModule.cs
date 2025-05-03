@@ -1,10 +1,14 @@
 ﻿using Game.Modules;
+using GTweens.Easings;
+using GTweens.Enums;
+using GTweens.Extensions;
 using Karpik.DragonECS;
 using Karpik.StatAndAbilities;
 using KarpikEngineMono;
 using KarpikEngineMono.Modules;
 using KarpikEngineMono.Modules.EcsCore;
 using KarpikEngineMono.Modules.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace Game;
@@ -85,6 +89,48 @@ public class MySystem : IEcsInit, IEcsRun
         {
             ref var health = ref Worlds.Instance.MetaWorld.GetPlayer().Player.Get<Health>();
             health.Value += health.Max.ModifiedValue;
+        }
+        
+        if (Input.IsPressed(Keys.F6))
+        {
+            var template = Loader.LoadTemplate("Enemy");
+            var world = Worlds.Instance.World;
+            var e = world.NewEntityLong();
+            template.ApplyTo(e.ID, world);
+            e.Del<FollowPlayer>();
+            
+            var transform = e.Get<Transform>();
+            var position = transform.Position;
+
+            var tween = GTweenExtensions.Tween(
+                () => e.Get<Transform>().Position,
+                pos => e.Get<Transform>().Position = pos,
+                position + new Vector2(0, 200),
+                2f)
+                .SetEasing(Easing.InOutCirc)
+                .SetLoops(-1, ResetMode.PingPong);
+            Tween.Add(tween, false);
+        }
+        
+        if (Input.IsPressed(Keys.F7))
+        {
+            var template = Loader.LoadTemplate("Enemy");
+            var world = Worlds.Instance.World;
+            var e = world.NewEntityLong();
+            template.ApplyTo(e.ID, world);
+            e.Del<FollowPlayer>();
+            
+            var transform = e.Get<Transform>();
+            var position = transform.Position;
+
+            var tween = GTweenExtensions.Tween(
+                    () => e.Get<Transform>().Position,
+                    pos => e.Get<Transform>().Position = pos,
+                    position + new Vector2(200, 200),
+                    2f)
+                .SetEasing(Easing.InOutCirc)
+                .SetLoops(-1, ResetMode.PingPong);
+            Tween.Add(tween, true);
         }
     }
 }
