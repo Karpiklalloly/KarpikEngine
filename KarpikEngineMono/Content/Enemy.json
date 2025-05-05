@@ -14,7 +14,7 @@
     },
     {
       "$Type": "Transform",
-      "Position": "100, 100",
+      "Position": "0, 0",
       "Rotation": 0.0,
       "Scale": "1, 1"
     },

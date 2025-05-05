@@ -66,9 +66,6 @@ public class MovementSystem : IEcsFixedRun
             
             transform.Position += velocity.Linear * (float)Time.FixedDeltaTime;
             transform.Rotation += NormalizeAngle(velocity.Angular * Time.FixedDeltaTime);
-            
-            force.Direction = Vector2.Zero;
-            force.Torque = 0;
         }
     }
     

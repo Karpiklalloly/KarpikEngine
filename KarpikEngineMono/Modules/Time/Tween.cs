@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using GTweens.Contexts;
 using GTweens.Tweens;
 
@@ -5,8 +6,8 @@ namespace KarpikEngineMono.Modules;
 
 public static class Tween
 {
-    private static GTweensContext _context = new GTweensContext();
-    private static GTweensContext _pausableContext = new GTweensContext();
+    private static readonly GTweensContext _context = new();
+    private static readonly GTweensContext _pausableContext = new();
     
     public static void Add(GTween tween, bool pausable)
     {
@@ -20,11 +21,13 @@ public static class Tween
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Update(double deltaTime)
     {
         _context.Tick((float)deltaTime);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void UpdatePausable(double deltaTime)
     {
         _pausableContext.Tick((float)deltaTime);

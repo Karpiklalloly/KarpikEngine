@@ -47,6 +47,7 @@ public class Main : Game
     {
         _imGuiRenderer = new ImGuiRenderer(this);
         _imGuiRenderer.RebuildFontAtlas();
+        Camera.Main = new Camera(GraphicsDevice.Viewport);
 
         InitEcs();
         Worlds.Instance.Pipeline = _pipeline;
@@ -64,7 +65,9 @@ public class Main : Game
 
     protected override void BeginRun()
     {
-        _pipeline = _builder.BuildAndInit();
+        _pipeline = _builder
+            .Inject(_imGuiRenderer)
+            .BuildAndInit();
         _pipeline.GetRunner<GameInit>().InitGame();
         _stopWatch.Start();
         base.BeginRun();
@@ -84,6 +87,7 @@ public class Main : Game
         _stopWatch.Restart();
 
         _fixedTimer += Time.DeltaTime;
+        Camera.Main.UpdateViewport(GraphicsDevice.Viewport);
         
         _pipeline.Run();
         if (_fixedTimer >= Time.FixedDeltaTime)
@@ -107,9 +111,11 @@ public class Main : Game
         
         base.Draw(gameTime);
 
-        _imGuiRenderer.BeginLayout(gameTime);
-        DebugGraphics.Draw();
-        _imGuiRenderer.EndLayout();
+        _pipeline.Injector.Inject(gameTime);
+        _pipeline.GetRunner<DebugRunner>().DebugRun();
+        // _imGuiRenderer.BeginLayout(gameTime);
+        // DebugGraphics.Draw();
+        // _imGuiRenderer.EndLayout();
     }
 
     private void InitEcs()
@@ -120,6 +126,7 @@ public class Main : Game
             .AddRunner<EcsFixedRunRunner>()
             .AddRunner<GamePreInit>()
             .AddRunner<GameInit>()
+            .AddRunner<DebugRunner>()
             .AddModule(new VisualModule())
             .AddModule(new InputModule())
             .AddModule(new PhysicsModule())

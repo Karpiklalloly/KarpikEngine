@@ -20,7 +20,7 @@ public static class Drawer
         _actions[_actionsCount++] = new DrawAction()
         {
             Texture = spriteRenderer.Texture,
-            Position = new Vector2(transform.Position.X, Window.ClientBounds.Height - transform.Position.Y),
+            Position = transform.Position with { Y = -transform.Position.Y },
             Color = spriteRenderer.Color,
             Rotation = transform.Rotation,
             Scale = transform.Scale,
@@ -31,7 +31,7 @@ public static class Drawer
 
     internal static void Draw()
     {
-        SpriteBatch.Begin();
+        SpriteBatch.Begin(transformMatrix: Camera.Main.GetViewMatrix());
         while (_actionsCount > 0)
         {
             _actions[--_actionsCount].Draw();
@@ -57,6 +57,16 @@ public static class Drawer
         public SpriteEffects Effect;
         public float Layer;
         
-        public void Draw() => SpriteBatch.Draw(Texture, Position, null, Color, (float)Rotation, Vector2.Zero, Scale, Effect, Layer);
+        public void Draw() => SpriteBatch
+            .Draw(
+                Texture,
+                Position,
+                null,
+                Color,
+                (float)Rotation,
+                new Vector2(Texture.Width / 2f, Texture.Height / 2f),
+                Scale,
+                Effect,
+                Layer);
     }
 }
