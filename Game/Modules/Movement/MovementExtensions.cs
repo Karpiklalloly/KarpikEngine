@@ -12,6 +12,6 @@ public static class MovementExtensions
     {
         var speed = entity.Get<Speed>().ModifiedValue;
         var body = entity.Get<RigidBody>();
-        entity.Move((float)(speed * body.Mass) * direction.Normalized());
+        entity.Move((float)(speed * body.Mass) * direction.Normalized() * (float)Time.FixedDeltaTime);
     }
 }

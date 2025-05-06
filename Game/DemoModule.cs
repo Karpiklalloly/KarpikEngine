@@ -23,19 +23,17 @@ public class DemoModule : IEcsModule
     }
 }
 
-public class MySystem : IEcsInit, IEcsDebugRun
+public class MySystem : IEcsDebugRun, IEcsFixedRun
 {
-    public void Init()
-    {
-        Console.WriteLine("init");
-    }
-
+    private bool[] _bools = new bool[1];
+    
     public void DebugRun()
     {
         ImGui.Begin("DemoWindow");
         ShowButtons();
         ShowStats();
         ImGui.End();
+
 
         if (Input.IsPressed(Keys.Escape))
         {
@@ -125,6 +123,20 @@ public class MySystem : IEcsInit, IEcsDebugRun
             var pos = Worlds.Instance.MetaWorld.GetPlayer().Player.Get<Transform>().Position;
             ImGui.Text($"Player Health: {health.Value} of {health.Max.ModifiedValue}");
             ImGui.Text($"Player Position: {pos.X:F2}, {pos.Y:F2}");
+        }
+
+        ImGui.Checkbox("Auto move player", ref _bools[0]);
+    }
+
+    public void FixedRun()
+    {
+        if (_bools[0])
+        {
+            var player = Worlds.Instance.MetaWorld.GetPlayer().Player;
+            if (!player.IsNull)
+            {
+                player.MoveBySpeed(new Vector2(1, 0));
+            }
         }
     }
 }

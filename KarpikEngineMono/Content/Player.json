@@ -40,7 +40,7 @@
     },
     {
       "$Type": "Speed",
-      "BaseValue": 500.0
+      "BaseValue": 50000.0
     },
     {
       "$Type": "Player"

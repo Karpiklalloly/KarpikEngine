@@ -41,7 +41,7 @@ public class Camera(Viewport viewport)
         }
     }
 
-    public Vector2 ViewportCenter => new Vector2(_viewport.Width * 0.5f, _viewport.Height * 0.5f);
+    public Vector2 ViewportCenter => new(_viewport.Width * 0.5f, _viewport.Height * 0.5f);
     
     private float _zoom = 1;
     private Vector2 _position = Vector2.Zero;
@@ -61,10 +61,10 @@ public class Camera(Viewport viewport)
     public Matrix GetViewMatrix()
     {
         if (!_isDirty) return _transform;
-        
+
         _transform =
-            Matrix.CreateTranslation(-_position.X, -_position.Y, 0) *
-            Matrix.CreateRotationZ((float)_rotation) * 
+            Matrix.CreateTranslation(-_position.X, _position.Y, 0) *
+            Matrix.CreateRotationZ(_rotation) *
             Matrix.CreateScale(_zoom, _zoom, 1) *
             Matrix.CreateTranslation(ViewportCenter.X, ViewportCenter.Y, 0);
         _isDirty = false;
@@ -91,7 +91,6 @@ public class Camera(Viewport viewport)
         // Если указана точка фокуса, корректируем позицию, чтобы она осталась на месте
         if (!focusPointScreen.HasValue) return;
         var focusWorldBefore = ScreenToWorld(focusPointScreen.Value);
-        // Обновляем матрицу с новым зумом, чтобы пересчет был корректен
         GetViewMatrix();
         var focusWorldAfter = ScreenToWorld(focusPointScreen.Value);
         Position += focusWorldBefore - focusWorldAfter;

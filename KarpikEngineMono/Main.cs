@@ -35,6 +35,10 @@ public class Main : Game
         Loader.Manager = Content;
         EcsDebug.OnPrint = Console.WriteLine;
         UI.Window = Window;
+        IsFixedTimeStep = false;
+        _graphics.SynchronizeWithVerticalRetrace = false;
+        _graphics.ApplyChanges();
+        SuppressDraw();
     }
 
     public Main Add(IEcsModule module)
@@ -95,12 +99,19 @@ public class Main : Game
             _pipeline.GetRunner<EcsFixedRunRunner>().FixedRun();
             _fixedTimer -= Time.FixedDeltaTime;
         }
-        _pipeline.GetRunner<PausableRunner>().PausableRun();
+        _pipeline.GetRunner<EcsPausableRunner>().PausableRun();
         _pipeline.GetRunner<PausableLateRunner>().PausableLateRun();
         
         UI.Update();
         
         base.Update(gameTime);
+        
+        SuppressDraw();
+        if (BeginDraw())
+        {
+            Draw(gameTime);
+            EndDraw();
+        }
     }
 
     protected override void Draw(GameTime gameTime)
@@ -113,15 +124,12 @@ public class Main : Game
 
         _pipeline.Injector.Inject(gameTime);
         _pipeline.GetRunner<DebugRunner>().DebugRun();
-        // _imGuiRenderer.BeginLayout(gameTime);
-        // DebugGraphics.Draw();
-        // _imGuiRenderer.EndLayout();
     }
 
     private void InitEcs()
     {
         _builder
-            .AddRunner<PausableRunner>()
+            .AddRunner<EcsPausableRunner>()
             .AddRunner<PausableLateRunner>()
             .AddRunner<EcsFixedRunRunner>()
             .AddRunner<GamePreInit>()

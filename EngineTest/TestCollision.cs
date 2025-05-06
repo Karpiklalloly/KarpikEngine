@@ -31,7 +31,7 @@ public class TestCollision
             .Inject(Worlds.Instance.MetaWorld);
         
         _builder
-            .AddRunner<PausableRunner>()
+            .AddRunner<EcsPausableRunner>()
             .AddRunner<PausableLateRunner>()
             .AddRunner<EcsFixedRunRunner>()
             .AddRunner<GamePreInit>()

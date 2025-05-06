@@ -40,7 +40,7 @@
     },
     {
       "$Type": "Speed",
-      "BaseValue": 200.0
+      "BaseValue": 20000.0
     },
     {
       "$Type": "Damage",

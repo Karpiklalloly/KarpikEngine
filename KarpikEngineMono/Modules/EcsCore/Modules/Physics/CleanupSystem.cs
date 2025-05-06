@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace KarpikEngineMono.Modules.EcsCore;
 
-public class CleanupSystem : IEcsFixedRun
+public class CleanupSystem : IEcsRun
 {
     private class Aspect : EcsAspect
     {
@@ -12,7 +12,7 @@ public class CleanupSystem : IEcsFixedRun
     
     private EcsDefaultWorld _world = Worlds.Instance.World;
     
-    public void FixedRun()
+    public void Run()
     {
         foreach (var e in _world.Where(out Aspect a))
         {

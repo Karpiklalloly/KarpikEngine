@@ -5,16 +5,16 @@ using KarpikEngineMono.Modules.EcsCore;
 
 namespace KarpikEngineMono.Modules.EcsRunners;
 
-public interface IPausableProcess : IEcsProcess
+public interface IEcsPausableRun : IEcsProcess
 {
     public void PausableRun();
 }
 
-public class PausableRunner : EcsRunner<IPausableProcess>, IPausableProcess
+public class EcsPausableRunner : EcsRunner<IEcsPausableRun>, IEcsPausableRun
 {
     private EcsWorld _world;
     
-    public PausableRunner()
+    public EcsPausableRunner()
     {
         _world = Worlds.Instance.MetaWorld;
     }

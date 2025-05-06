@@ -5,7 +5,7 @@ using KarpikEngineMono.Modules.EcsRunners;
 
 namespace Game.Modules;
 
-public class FollowTargetSystem : IPausableProcess
+public class FollowTargetSystem : IEcsFixedRun
 {
     private class Aspect : EcsAspect
     {
@@ -15,8 +15,8 @@ public class FollowTargetSystem : IPausableProcess
     }
     
     private EcsDefaultWorld _world = Worlds.Instance.World;
-    
-    public void PausableRun()
+
+    public void FixedRun()
     {
         foreach (var e in _world.Where(out Aspect a))
         {

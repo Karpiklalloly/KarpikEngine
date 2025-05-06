@@ -20,7 +20,7 @@ public static class Drawer
         _actions[_actionsCount++] = new DrawAction()
         {
             Texture = spriteRenderer.Texture,
-            Position = transform.Position with { Y = -transform.Position.Y },
+            Position = new Vector2(transform.Position.X, -transform.Position.Y),
             Color = spriteRenderer.Color,
             Rotation = transform.Rotation,
             Scale = transform.Scale,

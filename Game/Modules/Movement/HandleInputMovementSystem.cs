@@ -3,10 +3,11 @@ using KarpikEngineMono.Modules.EcsCore;
 using Microsoft.Xna.Framework.Input;
 using System.Numerics;
 using KarpikEngineMono.Modules;
+using KarpikEngineMono.Modules.EcsRunners;
 
 namespace Game.Modules
 {
-    public class HandleInputMovementSystem : IEcsRun
+    public class HandleInputMovementSystem : IEcsFixedRun
     {
         private class Aspect : EcsAspect
         {
@@ -17,7 +18,7 @@ namespace Game.Modules
 
         private EcsDefaultWorld _world = Worlds.Instance.World;
 
-        public void Run()
+        public void FixedRun()
         {
             var entities = _world.Where(out Aspect a);
             foreach (var en in entities)
