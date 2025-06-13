@@ -10,6 +10,7 @@ using KarpikEngineMono.Modules;
 using KarpikEngineMono.Modules.EcsCore;
 using KarpikEngineMono.Modules.EcsRunners;
 using KarpikEngineMono.Modules.Graphics;
+using KarpikEngineMono.Modules.Modding;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -23,9 +24,11 @@ public class DemoModule : IEcsModule
     }
 }
 
-public class MySystem : IEcsDebugRun, IEcsFixedRun
+public class MySystem : IEcsDebugRun, IEcsFixedRun, IEcsInject<ModManager>
 {
     private bool[] _bools = new bool[1];
+    
+    private ModManager _modManager;
     
     public void DebugRun()
     {
@@ -68,7 +71,13 @@ public class MySystem : IEcsDebugRun, IEcsFixedRun
                 new SpriteRenderer(),
                 new Transform(),
                 new HandleInputMovement(),
-                new RigidBody(10, 11, 12, 13, 14, RigidBody.BodyType.Dynamic,
+                new RigidBody(
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    RigidBody.BodyType.Dynamic,
                     RigidBody.CollisionMode.ContinuousSpeculative),
                 new ColliderBox(),
                 new Speed(),
@@ -105,6 +114,12 @@ public class MySystem : IEcsDebugRun, IEcsFixedRun
                 .SetLoops(-1, ResetMode.PingPong);
             Tween.Add(tween, false);
         }
+        
+        ImGui.NextColumn();
+        if (ImGui.Button("Reload Mods"))
+        {
+            _modManager.ReloadAllMods("Mods");
+        }
 
         ImGui.NextColumn();
         ImGui.Columns(1);
@@ -138,5 +153,10 @@ public class MySystem : IEcsDebugRun, IEcsFixedRun
                 player.MoveBySpeed(new Vector2(1, 0));
             }
         }
+    }
+
+    public void Inject(ModManager obj)
+    {
+        _modManager = obj;
     }
 }

@@ -20,6 +20,12 @@
 /processorParam:TextureFormat=Compressed
 /build:DefaultFont.spritefont
 
+#begin Mods/MySuperMod/mod_info.json
+/copy:Mods/MySuperMod/mod_info.json
+
+#begin Mods/MySuperMod/my.lua
+/copy:Mods/MySuperMod/my.lua
+
 #begin player.png
 /importer:TextureImporter
 /processor:TextureProcessor

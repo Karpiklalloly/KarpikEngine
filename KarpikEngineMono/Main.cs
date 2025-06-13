@@ -7,8 +7,11 @@ using MonoGame.ImGuiNet;
 using KarpikEngineMono;
 using KarpikEngineMono.Modules;
 using KarpikEngineMono.Modules.EcsCore;
+using KarpikEngineMono.Modules.EcsCore.Modules.Modding;
 using KarpikEngineMono.Modules.EcsRunners;
+using KarpikEngineMono.Modules.Modding;
 using KarpikEngineMono.Modules.VisualElements;
+using MoonSharp.Interpreter;
 
 namespace KarpikEngineMonoGame;
 
@@ -21,6 +24,7 @@ public class Main : Game
     private EcsPipeline _pipeline;
     private double _fixedTimer = 0;
     private Stopwatch _stopWatch = new();
+    private ModManager _modManager = ModManager.Instance;
 
     public Main()
     {
@@ -39,6 +43,8 @@ public class Main : Game
         _graphics.SynchronizeWithVerticalRetrace = false;
         _graphics.ApplyChanges();
         SuppressDraw();
+        _modManager.LoadMods("Mods");
+        _builder = _builder.Inject(_modManager);
     }
 
     public Main Add(IEcsModule module)
@@ -138,6 +144,7 @@ public class Main : Game
             .AddModule(new VisualModule())
             .AddModule(new InputModule())
             .AddModule(new PhysicsModule())
-            .AddModule(new TimeModule());
+            .AddModule(new TimeModule())
+            .AddModule(new ModdingModule());
     }
 }
