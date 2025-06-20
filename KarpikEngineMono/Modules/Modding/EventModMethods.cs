@@ -18,6 +18,9 @@ public static class EventModMethods
     public static void on_update(double dt) { }
     public const string OnUpdate = nameof(on_update);
     
+    public static void on_debug_update(double dt) { }
+    public const string OnDebugUpdate = nameof(on_debug_update);
+    
     public static void on_fixed_update(double dt) { }
     public const string OnFixedUpdate = nameof(on_fixed_update);
 }

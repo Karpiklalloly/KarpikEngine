@@ -66,6 +66,14 @@ public class ModManager
             container.Update();
         }
     }
+    
+    public void DebugUpdateMods()
+    {
+        foreach (var container in _loadedMods.Values)
+        {
+            container.DebugUpdate();
+        }
+    }
 
     public void FixedUpdateMods()
     {

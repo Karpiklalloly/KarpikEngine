@@ -3,7 +3,7 @@ using KarpikEngineMono.Modules.Modding;
 
 namespace KarpikEngineMono.Modules.EcsCore.Modules.Modding;
 
-public class ModUpdateSystem : IEcsRun, IEcsInit, IEcsFixedRun, IEcsInject<ModManager>
+public class ModUpdateSystem : IEcsRun, IEcsInit, IEcsFixedRun, IEcsDebugRun, IEcsInject<ModManager>
 {
     private ModManager _modManager;
 
@@ -25,5 +25,10 @@ public class ModUpdateSystem : IEcsRun, IEcsInit, IEcsFixedRun, IEcsInject<ModMa
     public void Inject(ModManager obj)
     {
         _modManager = obj;
+    }
+
+    public void DebugRun()
+    {
+        _modManager.DebugUpdateMods();
     }
 }

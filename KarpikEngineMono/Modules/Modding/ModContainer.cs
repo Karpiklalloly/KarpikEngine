@@ -10,6 +10,7 @@ public class ModContainer
     public Script Script { get; }
     public bool IsEnabled { get; set; } = true;
     public List<DynValue> UpdateFunction { get; private set; } = new();
+    public List<DynValue> DebugFunction { get; private set; } = new();
     public List<DynValue> FixedUpdateFunction { get; private set; } = new(); 
     public List<DynValue> StartFunction { get; private set; } = new();
     public List<DynValue> LoadFunction { get; private set; } = new();
@@ -57,6 +58,21 @@ public class ModContainer
     public void Update()
     {
         foreach (var func in UpdateFunction)
+        {
+            try
+            {
+                Script.Call(func, Time.DeltaTime);
+            }
+            catch (Exception e)
+            {
+                Log($"Update error: {e.Message}", LogLevel.Error);
+            }
+        }
+    }
+    
+    public void DebugUpdate()
+    {
+        foreach (var func in DebugFunction)
         {
             try
             {
@@ -146,6 +162,13 @@ public class ModContainer
                     {
                         UpdateFunction.Add(updateFunction);
                         Log($"Registered update for {Path.GetFileName(scriptFile)}");
+                    }
+                    
+                    var debugUpdateFunction = Script.Globals.Get(EventModMethods.OnDebugUpdate);
+                    if (debugUpdateFunction.IsNotNil() && debugUpdateFunction.Type == DataType.Function)
+                    {
+                        DebugFunction.Add(debugUpdateFunction);
+                        Log($"Registered debug update for {Path.GetFileName(scriptFile)}");
                     }
                     
                     var fixedUpdateFunction = Script.Globals.Get(EventModMethods.OnFixedUpdate);
